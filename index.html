@@ -113,8 +113,8 @@ footer a:hover{color:var(--ink)}
   <div class="tiles" aria-hidden="true">
     <div class="tile wide t1"><canvas class="orb" width="200" height="100" data-orb-mode="blackhole"></canvas></div>
     <div class="tile t2"><canvas class="orb" width="110" height="110" data-orb-mode="pulsar"></canvas></div>
-    <div class="tile t3"><canvas class="orb" width="110" height="110" data-orb-mode="galaxy"></canvas></div>
-    <div class="tile t4"><canvas class="orb" width="110" height="110" data-orb-mode="blackhole" data-orb-ink="1"></canvas></div>
+    <div class="tile t3"><canvas class="orb" width="110" height="110" data-orb-body="andromeda"></canvas></div>
+    <div class="tile t4"><canvas class="orb" width="110" height="110" data-orb-body="saturn"></canvas></div>
     <div class="tile sm t5"><canvas class="orb" width="72" height="72" data-orb-mode="pulsar" data-orb-ink="1"></canvas></div>
   </div>
   <div class="wrap">
@@ -136,15 +136,15 @@ footer a:hover{color:var(--ink)}
     <div class="grid">
       <div class="card">
         <div class="preview">
-          <canvas class="orb" width="176" height="88" data-orb-mode="blackhole"></canvas>
-          <canvas class="orb" width="88" height="88" data-orb-mode="pulsar"></canvas>
-          <canvas class="orb" width="88" height="88" data-orb-mode="galaxy"></canvas>
-          <canvas class="orb" width="88" height="88" data-orb-mode="nebula"></canvas>
+          <canvas class="orb" width="150" height="88" data-orb-body="gargantua"></canvas>
+          <canvas class="orb" width="88" height="88" data-orb-body="andromeda"></canvas>
+          <canvas class="orb" width="88" height="88" data-orb-body="orion"></canvas>
+          <canvas class="orb" width="88" height="88" data-orb-body="saturn"></canvas>
         </div>
-        <h3>Ephemeris <span class="ver mono">0.1.0</span></h3>
-        <p>Celestial thinking-orbs: a black hole, a pulsar, a galaxy, a nebula, drawn as dots on one canvas.
-          Loading states for AI interfaces that don't look like everyone else's. Colour them with six
-          CSS variables or run them monochrome.</p>
+        <h3>Ephemeris <span class="ver mono">0.2.0</span></h3>
+        <p>Celestial thinking-orbs drawn as dots on one canvas: nine kinds of body and twenty-three named
+          ones, from the Milky Way and Andromeda to Saturn, Halley and a total eclipse. Loading states
+          for AI interfaces that don't look like everyone else's. Six CSS variables, or monochrome.</p>
         <div class="tags"><span class="tag">canvas 2d</span><span class="tag">no deps</span><span class="tag">thinking-orbs compatible</span><span class="tag">MIT</span></div>
         <div class="row">
           <a class="btn small" href="https://tonkatuff.github.io/ephemeris/">Demo</a>
@@ -152,10 +152,10 @@ footer a:hover{color:var(--ink)}
         </div>
       </div>
       <div class="card soon">
-        <div class="preview"><span class="mono" style="color:var(--ink-3);font-size:13px">next up</span></div>
+        <div class="preview"><canvas class="orb" width="88" height="88" data-orb-body="halley"></canvas><canvas class="orb" width="88" height="88" data-orb-body="totality"></canvas><canvas class="orb" width="88" height="88" data-orb-body="jupiter"></canvas></div>
         <h3>More on the way</h3>
-        <p>Comet, Saturn, supernova, binary and eclipse orbs are on the Ephemeris roadmap.
-          Other libraries land here when they're ready to use, not before.</p>
+        <p>Ephemeris takes requests: open an issue with a photo of the object. Other libraries land
+          here when they're ready to use, not before.</p>
         <div class="row"><a class="btn small" href="https://github.com/TonkaTuff/ephemeris/issues">Request something</a></div>
       </div>
     </div>
