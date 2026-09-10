@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TonkaTuff</title>
+<meta name="description" content="Free, MIT-licensed libraries for the web. No subscription. If one saved you an afternoon, shout me a beer.">
+<meta property="og:title" content="TonkaTuff">
+<meta property="og:description" content="Free libraries. No subscription. Shout me a beer.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%230a0c11'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23000'/%3E%3Cellipse cx='16' cy='16' rx='14' ry='2.4' fill='none' stroke='%23f0a93a' stroke-width='2.2'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#0a0c11; --panel:#12151c; --panel-2:#171b23; --ink:#e9ecf1; --ink-2:#a3aab6; --ink-3:#6e7583;
+  --line:#232833; --line-2:#2f3542; --amber:#f0a93a; --amber-ink:#1a1204; --amber-soft:#f0a93a1f;
+}
+*{box-sizing:border-box}
+html{color-scheme:dark}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:Manrope,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+nav{position:sticky;top:0;z-index:5;background:#0a0c11cc;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:22px;height:58px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.02em;text-decoration:none;font-size:17px}
+.brand canvas{display:block}
+nav .links{display:flex;gap:18px;margin-left:8px;font-size:14px;color:var(--ink-2)}
+nav .links a{text-decoration:none}
+nav .links a:hover{color:var(--ink)}
+nav .spacer{flex:1}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;font-weight:700;font-size:14px;text-decoration:none;border:1px solid var(--line-2);color:var(--ink);background:var(--panel);transition:transform .15s ease,background .15s ease}
+.btn:hover{transform:translateY(-1px);background:var(--panel-2)}
+.btn.amber{background:var(--amber);color:var(--amber-ink);border-color:var(--amber)}
+.btn.amber:hover{background:#f7b955}
+.btn.small{padding:7px 12px;font-size:13px}
+.btn:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+
+.hero{position:relative;padding:96px 0 72px;overflow:hidden;min-height:560px;display:flex;align-items:center}
+.hero .wrap{position:relative;text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px}
+.hero h1{margin:0;font-size:clamp(38px,6.4vw,66px);font-weight:800;letter-spacing:-.035em;line-height:1.02;text-wrap:balance;max-width:14ch}
+.hero p{margin:0;max-width:52ch;color:var(--ink-2);font-size:18px;text-wrap:pretty}
+.hero p b{color:var(--ink);font-weight:700}
+.cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:8px}
+.pill{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+.pill b{color:var(--amber);font-weight:700;letter-spacing:0;text-transform:none;font-size:13px}
+
+.tiles{position:absolute;inset:0;pointer-events:none}
+.tile{position:absolute;width:150px;height:150px;border-radius:22px;background:var(--panel);border:1px solid var(--line);box-shadow:0 0 0 6px #ffffff05,0 24px 60px #00000080;display:flex;align-items:center;justify-content:center;pointer-events:auto;overflow:hidden}
+.tile.wide{width:230px}
+.tile canvas{display:block}
+.t1{left:4%;top:10%}.t2{right:6%;top:6%}.t3{left:10%;bottom:8%}.t4{right:10%;bottom:12%}.t5{left:50%;top:0;transform:translateX(-50%)}
+.tile.sm{width:110px;height:110px;border-radius:18px}
+@media (max-width:980px){.tiles{position:static;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:28px}.tile{position:static;transform:none;width:120px;height:120px}.tile.wide{width:184px}.tile.sm{width:96px;height:96px}.hero{min-height:0;padding-top:64px}.hero .wrap{display:contents}.hero{flex-direction:column;align-items:center;text-align:center}.hero>.wrap{display:flex}}
+
+section{padding:64px 0}
+section h2{margin:0 0 6px;font-size:28px;font-weight:800;letter-spacing:-.025em}
+section .sub{margin:0 0 28px;color:var(--ink-2);max-width:60ch}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.card .preview{height:150px;border-radius:10px;background:#0d1017;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;gap:18px;overflow:hidden}
+.card h3{margin:0;font-size:19px;font-weight:800;letter-spacing:-.02em;display:flex;align-items:baseline;gap:10px}
+.card h3 .ver{font-size:12px;color:var(--ink-3);font-weight:500}
+.card p{margin:0;color:var(--ink-2);font-size:15px}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);border:1px solid var(--line-2);border-radius:4px;padding:2px 7px}
+.card .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
+.card.soon{border-style:dashed;opacity:.75}
+.card.soon .preview{background:transparent}
+
+.steps{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px}
+.step .n{width:28px;height:28px;border-radius:50%;background:var(--amber-soft);color:var(--amber);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px}
+.step h3{margin:0;font-size:17px;font-weight:800;letter-spacing:-.01em}
+.step p{margin:0;color:var(--ink-2);font-size:15px}
+pre{margin:0;padding:12px 14px;background:#0d1017;border:1px solid var(--line);border-radius:10px;overflow-x:auto;font-size:12.5px;line-height:1.6;color:var(--ink)}
+code{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.92em;background:#0d1017;border:1px solid var(--line);padding:1px 5px;border-radius:4px}
+pre code{border:0;padding:0;background:none}
+
+.beer{background:linear-gradient(180deg,#12151c,#0f1218);border:1px solid var(--line);border-radius:20px;padding:36px 28px;display:grid;gap:22px;grid-template-columns:1fr auto;align-items:center}
+@media (max-width:760px){.beer{grid-template-columns:1fr}}
+.beer h2{margin:0 0 8px}
+.beer p{margin:0;color:var(--ink-2);max-width:56ch}
+
+details{border-top:1px solid var(--line);padding:16px 0}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-weight:700;font-size:16px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--ink-3);font-weight:500;font-size:20px}
+details[open] summary::after{content:"–"}
+details p{margin:10px 0 0;color:var(--ink-2);max-width:66ch}
+
+footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--ink-3);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{color:var(--ink-2);text-decoration:none}
+footer a:hover{color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#"><canvas class="orb" width="26" height="26" data-orb-mode="blackhole" data-orb-lite="1"></canvas>TonkaTuff</a>
+    <div class="links"><a href="#libraries">Libraries</a><a href="#how">How to use</a><a href="#faq">FAQ</a></div>
+    <div class="spacer"></div>
+    <a class="btn small" href="https://github.com/TonkaTuff">GitHub</a>
+    <a class="btn small amber" href="https://github.com/sponsors/TonkaTuff">Shout me a beer</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="tiles" aria-hidden="true">
+    <div class="tile wide t1"><canvas class="orb" width="200" height="100" data-orb-mode="blackhole"></canvas></div>
+    <div class="tile t2"><canvas class="orb" width="110" height="110" data-orb-mode="pulsar"></canvas></div>
+    <div class="tile t3"><canvas class="orb" width="110" height="110" data-orb-mode="galaxy"></canvas></div>
+    <div class="tile t4"><canvas class="orb" width="110" height="110" data-orb-mode="blackhole" data-orb-ink="1"></canvas></div>
+    <div class="tile sm t5"><canvas class="orb" width="72" height="72" data-orb-mode="pulsar" data-orb-ink="1"></canvas></div>
+  </div>
+  <div class="wrap">
+    <span class="pill">MIT · <b>no subscription</b></span>
+    <h1>Free libraries. No subscription.</h1>
+    <p>Small open-source tools for the web, MIT licensed and staying that way. There's no pro tier and
+      nothing behind a paywall. If one of them saved you an afternoon, <b>shout me a beer.</b></p>
+    <div class="cta">
+      <a class="btn amber" href="https://github.com/sponsors/TonkaTuff">🍺 Shout me a beer</a>
+      <a class="btn" href="#libraries">Browse the libraries</a>
+    </div>
+  </div>
+</header>
+
+<section id="libraries">
+  <div class="wrap">
+    <h2>Libraries</h2>
+    <p class="sub">One script each. No build step, no dependencies, no account.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="preview">
+          <canvas class="orb" width="176" height="88" data-orb-mode="blackhole"></canvas>
+          <canvas class="orb" width="88" height="88" data-orb-mode="pulsar"></canvas>
+          <canvas class="orb" width="88" height="88" data-orb-mode="galaxy"></canvas>
+        </div>
+        <h3>Ephemeris <span class="ver mono">0.1.0</span></h3>
+        <p>Celestial thinking-orbs: a black hole, a pulsar, a galaxy, drawn as dots on one canvas.
+          Loading states for AI interfaces that don't look like everyone else's. Colour them with six
+          CSS variables or run them monochrome.</p>
+        <div class="tags"><span class="tag">canvas 2d</span><span class="tag">no deps</span><span class="tag">thinking-orbs compatible</span><span class="tag">MIT</span></div>
+        <div class="row">
+          <a class="btn small" href="https://tonkatuff.github.io/ephemeris/">Demo</a>
+          <a class="btn small" href="https://github.com/TonkaTuff/ephemeris">GitHub</a>
+        </div>
+      </div>
+      <div class="card soon">
+        <div class="preview"><span class="mono" style="color:var(--ink-3);font-size:13px">next up</span></div>
+        <h3>More on the way</h3>
+        <p>Nebula, comet, Saturn, supernova, binary and eclipse orbs are on the Ephemeris roadmap.
+          Other libraries land here when they're ready to use, not before.</p>
+        <div class="row"><a class="btn small" href="https://github.com/TonkaTuff/ephemeris/issues">Request something</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <h2>How to use</h2>
+    <p class="sub">Paste two lines. Your coding agent can do it from the README if you'd rather not.</p>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3>Add the script</h3><p>From the repo or a CDN. One file, nothing to install.</p>
+<pre><code>&lt;script src="https://cdn.jsdelivr.net/gh/TonkaTuff/ephemeris@main/src/ephemeris.js"&gt;&lt;/script&gt;</code></pre></div>
+      <div class="step"><div class="n">2</div><h3>Drop in a canvas</h3><p>Height is the preset. Width lets wide ones stretch. Every option is a data attribute.</p>
+<pre><code>&lt;canvas class="orb" width="64" height="64"
+        data-orb-mode="pulsar"&gt;&lt;/canvas&gt;</code></pre></div>
+      <div class="step"><div class="n">3</div><h3>Make it yours</h3><p>Six CSS variables, read every frame, so a theme switch applies live.</p>
+<pre><code>canvas.orb {
+  --orb-cold: #0a7a5a;
+  --orb-hot:  #e8fff6;
+}</code></pre></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="beer">
+      <div>
+        <h2>No subscription. Just beer.</h2>
+        <p>I'm not going to charge a monthly fee for a loading spinner. Everything here stays free and MIT,
+          commercial use included. If something saved you time and you feel like it, the button covers a
+          beer. If not, no hard feelings.</p>
+      </div>
+      <a class="btn amber" href="https://github.com/sponsors/TonkaTuff">🍺 Shout me a beer</a>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <h2>FAQ</h2>
+    <p class="sub">Short answers.</p>
+    <details open><summary>Is it really free?</summary><p>Yes. MIT licence, use it in anything, commercial included. Nothing here will move behind a paywall later.</p></details>
+    <details><summary>What's the catch?</summary><p>There isn't one. The beer button is the whole business model.</p></details>
+    <details><summary>What do I need?</summary><p>A browser with Canvas 2D, which is all of them. No framework, no bundler, no npm install. It works inside React, Vue, Svelte or plain HTML the same way: put a canvas on the page.</p></details>
+    <details><summary>Does it work with coding agents?</summary><p>Yes. Point Claude Code, Cursor or Codex at the README and it'll wire the script and a canvas in. Every option is a data attribute or a CSS variable, so there's nothing to configure in JavaScript unless you want to.</p></details>
+    <details><summary>Can I ask for something?</summary><p>Open an issue on the repo. The roadmap's in the README and I pick from it in whatever order looks fun.</p></details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>TonkaTuff · Brisbane</span>
+    <span><a href="https://github.com/TonkaTuff">GitHub</a> · <a href="https://github.com/sponsors/TonkaTuff">Sponsors</a> · <a href="https://github.com/TonkaTuff/tonkatuff.com">This site</a></span>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/gh/TonkaTuff/ephemeris@main/src/ephemeris.js"></script>
+</body>
+</html>
