@@ -58,7 +58,7 @@ section h2{margin:0 0 6px;font-size:28px;font-weight:800;letter-spacing:-.025em}
 section .sub{margin:0 0 28px;color:var(--ink-2);max-width:60ch}
 .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:14px;min-width:0}
-.card .preview{height:150px;border-radius:10px;background:#0d1017;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;gap:18px;overflow:hidden}
+.card .preview{height:150px;border-radius:10px;background:#0d1017;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;gap:12px;overflow:hidden}
 .card h3{margin:0;font-size:19px;font-weight:800;letter-spacing:-.02em;display:flex;align-items:baseline;gap:10px}
 .card h3 .ver{font-size:12px;color:var(--ink-3);font-weight:500}
 .card p{margin:0;color:var(--ink-2);font-size:15px}
@@ -139,9 +139,10 @@ footer a:hover{color:var(--ink)}
           <canvas class="orb" width="176" height="88" data-orb-mode="blackhole"></canvas>
           <canvas class="orb" width="88" height="88" data-orb-mode="pulsar"></canvas>
           <canvas class="orb" width="88" height="88" data-orb-mode="galaxy"></canvas>
+          <canvas class="orb" width="88" height="88" data-orb-mode="nebula"></canvas>
         </div>
         <h3>Ephemeris <span class="ver mono">0.1.0</span></h3>
-        <p>Celestial thinking-orbs: a black hole, a pulsar, a galaxy, drawn as dots on one canvas.
+        <p>Celestial thinking-orbs: a black hole, a pulsar, a galaxy, a nebula, drawn as dots on one canvas.
           Loading states for AI interfaces that don't look like everyone else's. Colour them with six
           CSS variables or run them monochrome.</p>
         <div class="tags"><span class="tag">canvas 2d</span><span class="tag">no deps</span><span class="tag">thinking-orbs compatible</span><span class="tag">MIT</span></div>
@@ -153,7 +154,7 @@ footer a:hover{color:var(--ink)}
       <div class="card soon">
         <div class="preview"><span class="mono" style="color:var(--ink-3);font-size:13px">next up</span></div>
         <h3>More on the way</h3>
-        <p>Nebula, comet, Saturn, supernova, binary and eclipse orbs are on the Ephemeris roadmap.
+        <p>Comet, Saturn, supernova, binary and eclipse orbs are on the Ephemeris roadmap.
           Other libraries land here when they're ready to use, not before.</p>
         <div class="row"><a class="btn small" href="https://github.com/TonkaTuff/ephemeris/issues">Request something</a></div>
       </div>
