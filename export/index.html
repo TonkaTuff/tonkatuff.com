@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Export · TonkaTuff</title>
+<meta name="description" content="Render any Ephemeris body as a PNG, GIF, or WebM at any size. Wallpapers, slides, README heroes, stream overlays. Free.">
+<meta property="og:title" content="Export · TonkaTuff">
+<meta property="og:description" content="Any of the 42 bodies as a PNG, GIF, or WebM, any size. Free.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%230a0c11'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23000'/%3E%3Cellipse cx='16' cy='16' rx='14' ry='2.4' fill='none' stroke='%23fac800' stroke-width='2.2'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#0a0c11; --panel:#12151c; --panel-2:#171b23; --ink:#e9ecf1; --ink-2:#a3aab6; --ink-3:#6e7583;
+  --line:#232833; --line-2:#2f3542; --yellow:#fac800; --yellow-ink:#141000; --yellow-soft:#fac8001f;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{color-scheme:dark}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:Manrope,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+nav{position:sticky;top:0;z-index:5;background:#0a0c11cc;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:22px;height:58px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.02em;text-decoration:none;font-size:17px}
+.brand canvas{display:block}
+nav .links{display:flex;gap:18px;margin-left:8px;font-size:14px;color:var(--ink-2);white-space:nowrap}
+@media (max-width:720px){nav .links{display:none}nav .wrap{gap:12px}}
+nav .links a{text-decoration:none}
+nav .links a:hover,nav .links a.now{color:var(--ink)}
+nav .spacer{flex:1}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;font-weight:700;font-size:14px;text-decoration:none;border:1px solid var(--line-2);color:var(--ink);background:var(--panel);cursor:pointer;font-family:inherit;transition:transform .15s ease,background .15s ease}
+.btn:hover{transform:translateY(-1px);background:var(--panel-2)}
+.btn.yellow{background:var(--yellow);color:var(--yellow-ink);border-color:var(--yellow)}
+.btn.yellow:hover{background:#ffd52e}
+.btn.small{padding:7px 12px;font-size:13px}
+.btn:disabled{opacity:.5;cursor:wait;transform:none}
+.btn:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+
+main{padding:40px 0 64px}
+.top{display:flex;flex-direction:column;gap:8px;margin-bottom:26px}
+.top h1{margin:0;font-size:clamp(30px,4.4vw,42px);font-weight:800;letter-spacing:-.03em;line-height:1.05}
+.top p{margin:0;color:var(--ink-2);max-width:58ch;font-size:17px;text-wrap:pretty}
+.top p b{color:var(--ink)}
+
+.presets{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.presets button{font-weight:600}
+
+.bench{display:grid;gap:18px;grid-template-columns:minmax(0,1fr) 340px;align-items:start}
+@media (max-width:860px){.bench{grid-template-columns:1fr}}
+.stage{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px;align-items:center;min-width:0}
+.frame{border-radius:10px;overflow:hidden;line-height:0;max-width:100%;border:1px solid var(--line)}
+.frame.checker-dark{background-color:#0d0d12;background-image:linear-gradient(45deg,#181a22 25%,transparent 25%,transparent 75%,#181a22 75%),linear-gradient(45deg,#181a22 25%,transparent 25%,transparent 75%,#181a22 75%);background-size:16px 16px;background-position:0 0,8px 8px}
+.frame.checker-light{background-color:#f6f6f3;background-image:linear-gradient(45deg,#e6e6e2 25%,transparent 25%,transparent 75%,#e6e6e2 75%),linear-gradient(45deg,#e6e6e2 25%,transparent 25%,transparent 75%,#e6e6e2 75%);background-size:16px 16px;background-position:0 0,8px 8px}
+.frame canvas{display:block;max-width:100%;height:auto}
+.stage .meta{font-size:12px;color:var(--ink-3);display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+
+.controls{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.controls label{display:flex;flex-direction:column;gap:5px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.controls select,.controls input[type=color]{width:100%;font:500 14px Manrope,sans-serif;color:var(--ink);background:#0d1017;border:1px solid var(--line-2);border-radius:8px;padding:8px 10px;letter-spacing:0;text-transform:none}
+.controls input[type=color]{height:36px;padding:3px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.checks{display:flex;gap:14px;flex-wrap:wrap}
+.checks label{flex-direction:row;align-items:center;gap:6px;text-transform:none;letter-spacing:0;font-size:14px;color:var(--ink);font-weight:500}
+.checks input{accent-color:var(--yellow)}
+fieldset{border:1px solid var(--line);border-radius:10px;padding:10px 12px 12px;margin:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+legend{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:600;padding:0 4px}
+fieldset label{font-size:10px}
+fieldset .reset{grid-column:1/-1;justify-self:start;margin-top:2px;background:none;border:0;color:var(--ink-2);font:600 12px Manrope,sans-serif;cursor:pointer;padding:0;text-decoration:underline}
+.moment{flex-direction:column}
+.moment .row{display:flex;gap:10px;align-items:center}
+.moment input[type=range]{flex:1;accent-color:var(--yellow)}
+.moment output{font-size:13px;color:var(--ink-2);min-width:44px;text-align:right;letter-spacing:0;text-transform:none}
+.moment button{background:none;border:1px solid var(--line-2);color:var(--ink);border-radius:6px;padding:4px 10px;font:600 12px Manrope,sans-serif;cursor:pointer}
+
+.actions{margin-top:18px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.actions .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.actions .hint{font-size:13px;color:var(--ink-3);margin:0}
+.status{display:flex;flex-direction:column;gap:8px}
+.bar{height:6px;border-radius:3px;background:#0d1017;border:1px solid var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--yellow);transition:width .15s ease}
+.status span{font-size:13px;color:var(--ink-2)}
+
+.thanks{margin-top:18px;background:linear-gradient(180deg,#12151c,#0f1218);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.thanks p{margin:0;color:var(--ink-2);max-width:56ch}
+.thanks p b{color:var(--ink)}
+
+footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--ink-3);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{color:var(--ink-2);text-decoration:none}
+footer a:hover{color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.btn,.bar i{transition:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="../"><canvas class="orb" width="26" height="26" data-orb-mode="blackhole" data-orb-lite="1"></canvas>TonkaTuff</a>
+    <div class="links"><a href="../#libraries">Libraries</a><a class="now" href="./">Export</a><a href="https://tonkatuff.github.io/ephemeris/">Playground</a><a href="../#faq">FAQ</a></div>
+    <div class="spacer"></div>
+    <a class="btn small" href="https://github.com/TonkaTuff/ephemeris">GitHub</a>
+    <a class="btn small yellow" href="https://github.com/sponsors/TonkaTuff">Say thanks 🍺</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="top">
+    <h1>Export a body</h1>
+    <p>Pick one of the 42, pick a size, download. <b>PNG</b> for a still, <b>GIF</b> or <b>WebM</b> for the motion.
+      It all renders in your browser, nothing gets uploaded, and every size is free.</p>
+  </div>
+
+  <div class="presets" aria-label="Quick presets">
+    <button class="btn small" data-preset="16:9,2160">4K wallpaper</button>
+    <button class="btn small" data-preset="9:16,2160">Phone wallpaper</button>
+    <button class="btn small" data-preset="2:1,512">README hero</button>
+    <button class="btn small" data-preset="16:9,1080">Slide</button>
+    <button class="btn small" data-preset="1:1,1024">Avatar</button>
+  </div>
+
+  <div class="bench">
+    <div class="stage">
+      <div class="frame checker-dark" id="frame"><canvas id="pv" width="560" height="280"></canvas></div>
+      <div class="meta mono" id="meta"></div>
+    </div>
+
+    <form class="controls" id="ctl" onsubmit="return false">
+      <label>Body<select id="body"></select></label>
+      <div class="two">
+        <label>Shape<select id="shape">
+          <option value="1:1">Square 1:1</option><option value="2:1" selected>Wide 2:1</option><option value="3:1">Banner 3:1</option>
+          <option value="4:3">Classic 4:3</option><option value="16:9">Screen 16:9</option><option value="9:16">Phone 9:16</option>
+        </select></label>
+        <label>Height<select id="height">
+          <option value="256">256 px</option><option value="512" selected>512 px</option><option value="1024">1024 px</option>
+          <option value="1440">1440 px</option><option value="2160">2160 px</option>
+        </select></label>
+      </div>
+      <label>Ground<select id="ground">
+        <option value="t-dark">Transparent, for a dark page</option><option value="t-light">Transparent, for a light page</option>
+        <option value="dark">Dark</option><option value="light">Light</option><option value="custom">A colour</option>
+      </select></label>
+      <label id="groundColWrap" hidden>Ground colour<input type="color" id="groundCol" value="#0d0d12"></label>
+      <div class="checks">
+        <label><input type="checkbox" id="ink"> ink</label>
+        <label><input type="checkbox" id="lite"> lite</label>
+        <label><input type="checkbox" id="space"> space</label>
+      </div>
+      <fieldset id="colors"><legend>Colours</legend></fieldset>
+      <label class="moment">Moment
+        <div class="row"><input type="range" id="moment" min="0" max="60" step="0.05" value="2"><output id="momentOut">2.0s</output><button type="button" id="pause">Pause</button></div>
+      </label>
+      <div class="two">
+        <label>Clip length<select id="dur"><option value="2">2 s</option><option value="4" selected>4 s</option><option value="6">6 s</option><option value="8">8 s</option></select></label>
+        <label>Frame rate<select id="fps"><option value="12">12 fps</option><option value="15" selected>15 fps</option><option value="20">20 fps</option><option value="30">30 fps</option></select></label>
+      </div>
+    </form>
+  </div>
+
+  <div class="actions">
+    <div class="row">
+      <button class="btn yellow" id="png">Download PNG</button>
+      <button class="btn" id="gif">Download GIF</button>
+      <button class="btn" id="webm">Download WebM</button>
+      <p class="hint" id="hint"></p>
+    </div>
+    <div class="status" id="status" hidden><div class="bar"><i id="barFill"></i></div><span id="statusText"></span></div>
+  </div>
+
+  <div class="thanks">
+    <p><b>This one's free, whatever size you pick.</b> If it saved you an hour, or ended up on a wall, say thanks and shout me a beer or a coffee.</p>
+    <a class="btn yellow" href="https://github.com/sponsors/TonkaTuff">🍺 Shout me a beer</a>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Made in Brisbane by Dean. Renders come out of <a href="https://github.com/TonkaTuff/ephemeris">Ephemeris</a>, MIT, so use them for whatever you like.</span>
+    <span><a href="../">tonkatuff.com</a> · <a href="https://github.com/TonkaTuff/tonkatuff.com">This site</a></span>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/gh/TonkaTuff/ephemeris@v0.8.1/src/ephemeris.js"></script>
+<script src="../vendor/gif.js"></script>
+<script>
+(() => {
+  const E = window.Ephemeris, $ = id => document.getElementById(id);
+  const SHAPES = { '1:1': 1, '2:1': 2, '3:1': 3, '4:3': 4 / 3, '16:9': 16 / 9, '9:16': 9 / 16 };
+  const GROUNDS = { 't-dark': [null, '#0d0d12', true], 't-light': [null, '#f6f6f3', false], dark: ['#0d0d12', '#0d0d12', true], light: ['#f6f6f3', '#f6f6f3', false] };
+  const st = { body: 'gargantua', shape: '2:1', height: 512, ground: 't-dark', groundCol: '#0d0d12', ink: false, lite: false, space: false, colors: {}, dur: 4, fps: 15 };
+  let clock = 2, paused = false, busy = false;
+
+  // body select, grouped
+  const sel = $('body');
+  for (const [grp, names] of Object.entries(E.GROUPS)) {
+    const og = document.createElement('optgroup'); og.label = grp; sel.appendChild(og);
+    for (const n of names) { const o = document.createElement('option'); o.value = n; o.textContent = n; og.appendChild(o); }
+  }
+  sel.value = st.body;
+
+  const hex = c => '#' + c.map(v => v.toString(16).padStart(2, '0')).join('');
+  const defaults = () => { const b = E.BODIES[st.body]; return b.palette || E.MODES[b.mode].defaults; };
+  const palette = () => { const d = defaults(), q = {}; for (const k of E.palette.keys) q[k] = (st.colors[k] && E.palette.parse(st.colors[k])) || d[k]; return q; };
+  const ground = () => {   // [fill or null for transparent, flat fill for formats without alpha, dark?]
+    if (st.ground !== 'custom') return GROUNDS[st.ground];
+    const c = E.palette.parse(st.groundCol) || [13, 13, 18], lum = (0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]) / 255;
+    return [st.groundCol, st.groundCol, lum < 0.5];
+  };
+  const dims = () => ({ W: Math.round(st.height * SHAPES[st.shape] / 2) * 2, H: st.height });
+
+  // draw at any pixel size with the look of the demo: logical height caps at 640, the rest is scale
+  function render(ctx, W, H, t, flat) {
+    const [fill, flatFill, dark] = ground(), L = Math.min(st.height, 640), s = H / L;
+    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, W, H);
+    const f = flat ? flatFill : fill; if (f) { ctx.fillStyle = f; ctx.fillRect(0, 0, W, H); }
+    ctx.scale(s, s);
+    E.body(st.body, ctx, L, t, dark, { w: W / s, ink: st.ink, lite: st.lite, space: st.space, palette: palette() });
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+  }
+
+  // colours
+  const cols = $('colors');
+  function buildColors() {
+    cols.innerHTML = '<legend>Colours</legend>';
+    const d = defaults();
+    for (const k of E.palette.keys) {
+      const l = document.createElement('label'); l.textContent = k;
+      const i = document.createElement('input'); i.type = 'color'; i.value = st.colors[k] || hex(d[k]);
+      i.oninput = () => { st.colors[k] = i.value; };
+      l.appendChild(i); cols.appendChild(l);
+    }
+    const r = document.createElement('button'); r.type = 'button'; r.className = 'reset'; r.textContent = 'reset to the body\'s own colours';
+    r.onclick = () => { st.colors = {}; buildColors(); };
+    cols.appendChild(r);
+  }
+
+  // preview
+  const pv = $('pv'), pctx = pv.getContext('2d'), frame = $('frame');
+  function fitPreview() {
+    const r = SHAPES[st.shape], maxW = Math.min(560, frame.parentElement.clientWidth - 36), maxH = 420;
+    let w = maxW, h = w / r; if (h > maxH) { h = maxH; w = h * r; }
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    pv.width = Math.round(w * dpr); pv.height = Math.round(h * dpr); pv.style.width = Math.round(w) + 'px';
+    frame.className = 'frame' + (st.ground === 't-dark' ? ' checker-dark' : st.ground === 't-light' ? ' checker-light' : '');
+    const { W, H } = dims();
+    $('meta').innerHTML = `<span>${W} × ${H}</span><span>${st.body}</span><span>${E.BODIES[st.body].mode}</span>`;
+    $('hint').textContent = `GIF caps at 1024 on the long side and gets a solid ground. WebM records in real time, ${st.dur} s.`;
+  }
+  let last = performance.now();
+  function tick(now) {
+    if (!paused && !busy) { clock = (clock + (now - last) / 1000) % 60; $('moment').value = clock.toFixed(2); $('momentOut').textContent = clock.toFixed(1) + 's'; }
+    last = now;
+    if (!busy) render(pctx, pv.width, pv.height, clock, false);
+    requestAnimationFrame(tick);
+  }
+
+  // controls
+  const on = (id, fn) => $(id).addEventListener('input', e => { fn(e.target); fitPreview(); });
+  on('body', el => { st.body = el.value; st.colors = {}; buildColors(); });
+  on('shape', el => { st.shape = el.value; });
+  on('height', el => { st.height = +el.value; });
+  on('ground', el => { st.ground = el.value; $('groundColWrap').hidden = st.ground !== 'custom'; });
+  on('groundCol', el => { st.groundCol = el.value; });
+  on('ink', el => { st.ink = el.checked; });
+  on('lite', el => { st.lite = el.checked; });
+  on('space', el => { st.space = el.checked; });
+  on('dur', el => { st.dur = +el.value; });
+  on('fps', el => { st.fps = +el.value; });
+  $('moment').addEventListener('input', e => { clock = +e.target.value; $('momentOut').textContent = clock.toFixed(1) + 's'; });
+  $('pause').onclick = () => { paused = !paused; $('pause').textContent = paused ? 'Play' : 'Pause'; };
+  for (const b of document.querySelectorAll('[data-preset]')) b.onclick = () => {
+    const [shape, h] = b.dataset.preset.split(','); st.shape = shape; st.height = +h; $('shape').value = shape; $('height').value = h; fitPreview();
+  };
+  window.addEventListener('resize', fitPreview);
+
+  // exports
+  const download = (blob, name) => { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 20000); };
+  const fname = (W, H, ext) => `${st.body}-${W}x${H}.${ext}`;
+  const setBusy = (b, text) => { busy = b; for (const id of ['png', 'gif', 'webm']) $(id).disabled = b; $('status').hidden = !b; if (text) progress(0, text); };
+  const progress = (p, text) => { $('barFill').style.width = Math.round(p * 100) + '%'; $('statusText').textContent = text; };
+  const offscreen = (W, H) => { const c = document.createElement('canvas'); c.width = W; c.height = H; return [c, c.getContext('2d')]; };
+
+  $('png').onclick = () => {
+    const { W, H } = dims(), [c, ctx] = offscreen(W, H);
+    render(ctx, W, H, clock, false);
+    c.toBlob(b => download(b, fname(W, H, 'png')), 'image/png');
+  };
+
+  $('gif').onclick = async () => {
+    let { W, H } = dims(); const cap = 1024, long = Math.max(W, H);
+    if (long > cap) { W = Math.round(W * cap / long / 2) * 2; H = Math.round(H * cap / long / 2) * 2; }
+    const [, ctx] = offscreen(W, H), n = Math.round(st.dur * st.fps), delay = Math.round(1000 / st.fps);
+    const gif = new GIF({ workers: 2, quality: 8, width: W, height: H, workerScript: '../vendor/gif.worker.js' });
+    setBusy(true, 'Rendering frames');
+    for (let i = 0; i < n; i++) {
+      render(ctx, W, H, clock + i / st.fps, true);
+      gif.addFrame(ctx, { copy: true, delay });
+      if (i % 4 === 0) { progress(0.35 * i / n, `Rendering frame ${i + 1} of ${n}`); await new Promise(r => setTimeout(r)); }
+    }
+    gif.on('progress', p => progress(0.35 + 0.65 * p, 'Encoding the GIF'));
+    gif.on('finished', b => { setBusy(false); download(b, fname(W, H, 'gif')); });
+    gif.render();
+  };
+
+  $('webm').onclick = () => {
+    const mime = ['video/webm;codecs=vp9', 'video/webm;codecs=vp8', 'video/webm'].find(m => window.MediaRecorder && MediaRecorder.isTypeSupported(m));
+    if (!mime) { setBusy(true); progress(0, 'This browser cannot record WebM. Chrome, Edge, and Firefox can.'); setTimeout(() => setBusy(false), 4000); return; }
+    const { W, H } = dims(), [c, ctx] = offscreen(W, H), n = Math.round(st.dur * st.fps);
+    const rec = new MediaRecorder(c.captureStream(st.fps), { mimeType: mime, videoBitsPerSecond: 16e6 }), chunks = [];
+    rec.ondataavailable = e => { if (e.data.size) chunks.push(e.data); };
+    rec.onstop = () => { setBusy(false); download(new Blob(chunks, { type: 'video/webm' }), fname(W, H, 'webm')); };
+    setBusy(true, 'Recording'); render(ctx, W, H, clock, true); rec.start();
+    let i = 0;
+    const iv = setInterval(() => {
+      i++; render(ctx, W, H, clock + i / st.fps, true); progress(i / n, `Recording ${(i / st.fps).toFixed(1)} s of ${st.dur} s`);
+      if (i >= n) { clearInterval(iv); rec.stop(); }
+    }, 1000 / st.fps);
+  };
+
+  buildColors(); fitPreview(); requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>
