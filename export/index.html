@@ -47,6 +47,9 @@ main{padding:40px 0 64px}
 
 .presets{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
 .presets button{font-weight:600}
+#galaxyPicks{margin-top:-8px}
+.presets .picklabel{align-self:center;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-right:4px}
+.presets .btn.on{border-color:var(--yellow);color:var(--yellow)}
 
 .bench{display:grid;gap:18px;grid-template-columns:minmax(0,1fr) 340px;align-items:start}
 @media (max-width:860px){.bench{grid-template-columns:1fr}}
@@ -120,6 +123,7 @@ footer a:hover{color:var(--ink)}
     <button class="btn small" data-preset="16:9,1080">Slide</button>
     <button class="btn small" data-preset="1:1,1024">Avatar</button>
   </div>
+  <div class="presets" id="galaxyPicks" aria-label="Galaxies"><span class="picklabel">Galaxies</span></div>
 
   <div class="bench">
     <div class="stage">
@@ -201,6 +205,16 @@ footer a:hover{color:var(--ink)}
   }
   sel.value = st.body;
 
+  // one-click galaxies, built from the library so a new galaxy shows up here on its own
+  const nice = n => ({ bodes: "Bode's", 'ngc-1300': 'NGC 1300' })[n] || n.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
+  const picks = $('galaxyPicks');
+  for (const n of E.GROUPS.Galaxies || []) {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'btn small'; b.textContent = nice(n); b.dataset.body = n;
+    b.onclick = () => { st.body = n; sel.value = n; st.colors = {}; buildColors(); fitPreview(); markPick(); };
+    picks.appendChild(b);
+  }
+  function markPick() { for (const b of picks.querySelectorAll('[data-body]')) { const on = b.dataset.body === st.body; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); } }
+
   const hex = c => '#' + c.map(v => v.toString(16).padStart(2, '0')).join('');
   const defaults = () => { const b = E.BODIES[st.body]; return b.palette || E.MODES[b.mode].defaults; };
   const palette = () => { const d = defaults(), q = {}; for (const k of E.palette.keys) q[k] = (st.colors[k] && E.palette.parse(st.colors[k])) || d[k]; return q; };
@@ -259,7 +273,7 @@ footer a:hover{color:var(--ink)}
 
   // controls
   const on = (id, fn) => $(id).addEventListener('input', e => { fn(e.target); fitPreview(); });
-  on('body', el => { st.body = el.value; st.colors = {}; buildColors(); });
+  on('body', el => { st.body = el.value; st.colors = {}; buildColors(); markPick(); });
   on('shape', el => { st.shape = el.value; });
   on('height', el => { st.height = +el.value; });
   on('ground', el => { st.ground = el.value; $('groundColWrap').hidden = st.ground !== 'custom'; });
@@ -320,7 +334,7 @@ footer a:hover{color:var(--ink)}
     }, 1000 / st.fps);
   };
 
-  buildColors(); fitPreview(); requestAnimationFrame(tick);
+  buildColors(); fitPreview(); markPick(); requestAnimationFrame(tick);
 })();
 </script>
 </body>
