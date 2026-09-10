@@ -25,7 +25,8 @@ nav{position:sticky;top:0;z-index:5;background:#0a0c11cc;backdrop-filter:blur(10
 nav .wrap{display:flex;align-items:center;gap:22px;height:58px}
 .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.02em;text-decoration:none;font-size:17px}
 .brand canvas{display:block}
-nav .links{display:flex;gap:18px;margin-left:8px;font-size:14px;color:var(--ink-2)}
+nav .links{display:flex;gap:18px;margin-left:8px;font-size:14px;color:var(--ink-2);white-space:nowrap}
+@media (max-width:720px){nav .links{display:none}nav .wrap{gap:12px}}
 nav .links a{text-decoration:none}
 nav .links a:hover{color:var(--ink)}
 nav .spacer{flex:1}
@@ -168,10 +169,10 @@ footer a:hover{color:var(--ink)}
     <p class="sub">Paste two lines. Your coding agent can do it from the README if you'd rather not.</p>
     <div class="steps">
       <div class="step"><div class="n">1</div><h3>Add the script</h3><p>From the repo or a CDN. One file, nothing to install.</p>
-<pre><code>&lt;script src="https://cdn.jsdelivr.net/gh/TonkaTuff/ephemeris@main/src/ephemeris.js"&gt;&lt;/script&gt;</code></pre></div>
+<pre><code>&lt;script src="https://cdn.jsdelivr.net/gh/TonkaTuff/ephemeris@v0.2.0/src/ephemeris.js"&gt;&lt;/script&gt;</code></pre></div>
       <div class="step"><div class="n">2</div><h3>Drop in a canvas</h3><p>Height is the preset. Width lets wide ones stretch. Every option is a data attribute.</p>
 <pre><code>&lt;canvas class="orb" width="64" height="64"
-        data-orb-mode="pulsar"&gt;&lt;/canvas&gt;</code></pre></div>
+        data-orb-body="andromeda"&gt;&lt;/canvas&gt;</code></pre></div>
       <div class="step"><div class="n">3</div><h3>Make it yours</h3><p>Six CSS variables, read every frame, so a theme switch applies live.</p>
 <pre><code>canvas.orb {
   --orb-cold: #0a7a5a;
@@ -214,6 +215,6 @@ footer a:hover{color:var(--ink)}
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/gh/TonkaTuff/ephemeris@main/src/ephemeris.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TonkaTuff/ephemeris@v0.2.0/src/ephemeris.js"></script>
 </body>
 </html>
