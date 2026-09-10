@@ -80,7 +80,7 @@ fieldset .reset{grid-column:1/-1;justify-self:start;margin-top:2px;background:no
 .actions .hint{font-size:13px;color:var(--ink-3);margin:0}
 .status{display:flex;flex-direction:column;gap:8px}
 .bar{height:6px;border-radius:3px;background:#0d1017;border:1px solid var(--line);overflow:hidden}
-.bar i{display:block;height:100%;width:0;background:var(--yellow);transition:width .15s ease}
+.bar i{display:block;height:100%;width:100%;background:var(--yellow);transform:scaleX(0);transform-origin:left;transition:transform .15s ease}
 .status span{font-size:13px;color:var(--ink-2)}
 
 .thanks{margin-top:18px;background:linear-gradient(180deg,#12151c,#0f1218);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap}
@@ -280,7 +280,7 @@ footer a:hover{color:var(--ink)}
   const download = (blob, name) => { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 20000); };
   const fname = (W, H, ext) => `${st.body}-${W}x${H}.${ext}`;
   const setBusy = (b, text) => { busy = b; for (const id of ['png', 'gif', 'webm']) $(id).disabled = b; $('status').hidden = !b; if (text) progress(0, text); };
-  const progress = (p, text) => { $('barFill').style.width = Math.round(p * 100) + '%'; $('statusText').textContent = text; };
+  const progress = (p, text) => { $('barFill').style.transform = `scaleX(${Math.min(1, p)})`; $('statusText').textContent = text; };
   const offscreen = (W, H) => { const c = document.createElement('canvas'); c.width = W; c.height = H; return [c, c.getContext('2d')]; };
 
   $('png').onclick = () => {
