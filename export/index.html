@@ -158,6 +158,7 @@ footer a:hover{color:var(--ink)}
         <label><input type="checkbox" id="ink"> ink</label>
         <label><input type="checkbox" id="lite"> lite</label>
         <label><input type="checkbox" id="space"> space</label>
+        <label><input type="checkbox" id="glow" checked> glow</label>
       </div>
       <fieldset id="colors"><legend>Colours</legend></fieldset>
       <label class="moment">Moment
@@ -196,14 +197,14 @@ footer a:hover{color:var(--ink)}
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/gh/TonkaTuff/ephemeris@v0.10.0/dist/ephemeris.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TonkaTuff/ephemeris@v0.11.0/dist/ephemeris.min.js"></script>
 <script src="../vendor/gif.js"></script>
 <script>
 (() => {
   const E = window.Ephemeris, $ = id => document.getElementById(id);
   const SHAPES = { '1:1': 1, '2:1': 2, '3:1': 3, '4:3': 4 / 3, '16:9': 16 / 9, '9:16': 9 / 16 };
   const GROUNDS = { 't-dark': [null, '#0d0d12', true], 't-light': [null, '#f6f6f3', false], dark: ['#0d0d12', '#0d0d12', true], light: ['#f6f6f3', '#f6f6f3', false] };
-  const st = { body: 'gargantua', shape: '2:1', height: 512, ground: 't-dark', groundCol: '#0d0d12', ink: false, lite: false, space: false, colors: {}, dur: 4, fps: 15 };
+  const st = { body: 'gargantua', shape: '2:1', height: 512, ground: 't-dark', groundCol: '#0d0d12', ink: false, lite: false, space: false, glow: true, colors: {}, dur: 4, fps: 15 };
   let clock = 2, paused = false, busy = false;
 
   // body select, grouped
@@ -247,7 +248,7 @@ footer a:hover{color:var(--ink)}
     ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, W, H);
     const f = flat ? flatFill : fill; if (f) { ctx.fillStyle = f; ctx.fillRect(0, 0, W, H); }
     ctx.scale(s, s);
-    E.body(st.body, ctx, L, t, dark, { w: W / s, ink: st.ink, lite: st.lite, space: st.space, palette: palette() });
+    E.body(st.body, ctx, L, t, dark, { w: W / s, ink: st.ink, lite: st.lite, space: st.space, glow: st.glow, palette: palette() });
     ctx.setTransform(1, 0, 0, 1, 0, 0);
   }
 
@@ -297,6 +298,7 @@ footer a:hover{color:var(--ink)}
   on('ink', el => { st.ink = el.checked; });
   on('lite', el => { st.lite = el.checked; });
   on('space', el => { st.space = el.checked; });
+  on('glow', el => { st.glow = el.checked; });
   on('dur', el => { st.dur = +el.value; });
   on('fps', el => { st.fps = +el.value; });
   $('moment').addEventListener('input', e => { clock = +e.target.value; $('momentOut').textContent = clock.toFixed(1) + 's'; });
