@@ -206,8 +206,8 @@ footer a:hover{color:var(--ink)}
   sel.value = st.body;
 
   // one-click rows for these families, built from the library so a new body shows up here on its own
-  const PICK_ROWS = ['Galaxies', 'Nebulae'];
-  const nice = n => ({ bodes: "Bode's", 'ngc-1300': 'NGC 1300' })[n] || n.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
+  const PICK_ROWS = ['Galaxies', 'Nebulae', 'Stars', 'Comets', 'Black holes'];
+  const nice = n => ({ bodes: "Bode's", 'ngc-1300': 'NGC 1300', sn1987a: 'SN 1987A', 'hale-bopp': 'Hale-Bopp', neowise: 'NEOWISE' })[n] || n.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
   const picks = $('bodyPicks');
   for (const grp of PICK_ROWS) {
     const names = E.GROUPS[grp]; if (!names) continue;
