@@ -6,7 +6,7 @@
 <title>Export · TonkaTuff</title>
 <meta name="description" content="Render any Ephemeris body as a PNG, GIF, or WebM at any size. Wallpapers, slides, README heroes, stream overlays. Free.">
 <meta property="og:title" content="Export · TonkaTuff">
-<meta property="og:description" content="Any of the 42 bodies as a PNG, GIF, or WebM, any size. Free.">
+<meta property="og:description" content="Any of the 45 bodies as a PNG, GIF, or WebM, any size. Free.">
 <meta property="og:image" content="https://tonkatuff.com/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -118,7 +118,7 @@ footer a:hover{color:var(--ink)}
 <main class="wrap">
   <div class="top">
     <h1>Export a body</h1>
-    <p>Pick one of the 42, pick a size, download. <b>PNG</b> for a still, <b>GIF</b> or <b>WebM</b> for the motion.
+    <p>Pick one of the 45, pick a size, download. <b>PNG</b> for a still, <b>GIF</b> or <b>WebM</b> for the motion.
       It all renders in your browser, nothing gets uploaded, and every size is free.</p>
   </div>
 
@@ -196,7 +196,7 @@ footer a:hover{color:var(--ink)}
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/gh/TonkaTuff/ephemeris@v0.9.4/dist/ephemeris.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TonkaTuff/ephemeris@v0.10.0/dist/ephemeris.min.js"></script>
 <script src="../vendor/gif.js"></script>
 <script>
 (() => {
@@ -216,7 +216,7 @@ footer a:hover{color:var(--ink)}
 
   // one-click rows for these families, built from the library so a new body shows up here on its own
   const PICK_ROWS = ['Galaxies', 'Nebulae', 'Stars', 'Comets', 'Black holes'];
-  const nice = n => ({ bodes: "Bode's", 'ngc-1300': 'NGC 1300', sn1987a: 'SN 1987A', 'hale-bopp': 'Hale-Bopp', neowise: 'NEOWISE' })[n] || n.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
+  const nice = n => ({ bodes: "Bode's", 'ngc-1300': 'NGC 1300', sn1987a: 'SN 1987A', 'hale-bopp': 'Hale-Bopp', neowise: 'NEOWISE', 'sgr-a': 'Sgr A*', 'ton-618': 'TON 618', 'cygnus-x1': 'Cygnus X-1' })[n] || n.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
   const picks = $('bodyPicks');
   for (const grp of PICK_ROWS) {
     const names = E.GROUPS[grp]; if (!names) continue;
