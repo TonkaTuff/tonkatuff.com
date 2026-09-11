@@ -53,8 +53,11 @@ nav .spacer{flex:1}
 .tile canvas{display:block}
 .t1{left:4%;top:10%}.t2{right:6%;top:6%}.t3{left:10%;bottom:8%}.t4{right:10%;bottom:12%}.t5{left:50%;top:0;transform:translateX(-50%)}
 .tile.sm{width:110px;height:110px;border-radius:18px}
-.truck{position:absolute;right:3%;bottom:0;width:250px;height:auto;pointer-events:none;filter:drop-shadow(0 18px 28px #000000a0)}
-@media (max-width:980px){.tiles{position:static;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:28px}.tile{position:static;transform:none;width:120px;height:120px}.tile.wide{width:184px}.tile.sm{width:96px;height:96px}.truck{position:static;width:190px}.hero{min-height:0;padding-top:64px}.hero .wrap{display:contents}.hero{flex-direction:column;align-items:center;text-align:center}.hero>.wrap{display:flex}}
+.truck{position:absolute;right:3%;bottom:0;width:250px;pointer-events:none}
+.truck video{display:block;width:100%;height:auto;mix-blend-mode:screen;-webkit-mask-image:linear-gradient(to right,transparent,#000 4%,#000 91%,transparent),linear-gradient(to bottom,transparent,#000 4%,#000 94%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent,#000 4%,#000 91%,transparent),linear-gradient(to bottom,transparent,#000 4%,#000 94%,transparent);mask-composite:intersect}
+.truck .truck-loop{position:absolute;inset:0;visibility:hidden}
+.truck.looping .truck-loop{visibility:visible}.truck.looping .truck-intro{visibility:hidden}
+@media (max-width:980px){.tiles{position:static;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:28px}.tile{position:static;transform:none;width:120px;height:120px}.tile.wide{width:184px}.tile.sm{width:96px;height:96px}.truck{position:relative;width:190px}.hero{min-height:0;padding-top:64px}.hero .wrap{display:contents}.hero{flex-direction:column;align-items:center;text-align:center}.hero>.wrap{display:flex}}
 
 section{padding:64px 0}
 section h2{margin:0 0 6px;font-size:28px;font-weight:800;letter-spacing:-.025em}
@@ -117,7 +120,20 @@ footer a:hover{color:var(--ink)}
     <div class="tile wide t1"><canvas class="orb" width="200" height="100" data-orb-mode="blackhole"></canvas></div>
     <div class="tile t2"><canvas class="orb" width="110" height="110" data-orb-mode="pulsar"></canvas></div>
     <div class="tile t3"><canvas class="orb" width="110" height="110" data-orb-body="andromeda"></canvas></div>
-    <img class="truck" src="assets/truck.png" width="600" height="483" alt="A yellow Tonka dump truck, loaded">
+    <div class="truck" role="img" aria-label="A yellow Tonka dump truck, loaded, kicking up dust">
+      <video class="truck-intro" src="assets/truck-intro.mp4" poster="assets/truck-poster.webp" width="540" height="434" muted playsinline preload="auto"></video>
+      <video class="truck-loop" src="assets/truck-loop.mp4" poster="assets/truck-loop-poster.webp" width="540" height="434" muted playsinline loop preload="auto"></video>
+    </div>
+    <script>
+    // The drive-in plays once, then hands over to a seamless one-second loop. Reduced motion keeps the still.
+    (() => {
+      const t = document.querySelector('.truck'); if (!t) return;
+      const [intro, loop] = t.querySelectorAll('video');
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      intro.addEventListener('ended', () => { t.classList.add('looping'); loop.play().catch(() => {}); }, { once: true });
+      intro.play().catch(() => {});
+    })();
+    </script>
     <div class="tile sm t5"><canvas class="orb" width="72" height="72" data-orb-mode="pulsar" data-orb-ink="1"></canvas></div>
   </div>
   <div class="wrap">
