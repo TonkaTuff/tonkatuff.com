@@ -50,9 +50,9 @@ nav .spacer{flex:1}
 .hero .pill{position:relative;z-index:1}
 .hero-text{position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:center;gap:18px}
 .hero-text h1{position:relative}
-.hero-bh{display:block;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:-1;pointer-events:none;opacity:.5}
+.hero-bh{display:block;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:-1;pointer-events:none;opacity:.75}
 .hero-text h1,.hero-text p{text-shadow:0 0 4px var(--ground),0 0 14px var(--ground),0 0 28px var(--ground)}
-.hero-bh canvas{display:block;width:min(1040px,170vw)!important;height:auto!important}
+.hero-bh canvas{display:block;width:min(1120px,180vw)!important;height:auto!important}
 .tile-row{display:grid;grid-template-columns:repeat(6,auto);gap:14px;justify-content:center;margin-top:22px}
 @media (max-width:880px){.tile-row{grid-template-columns:repeat(3,auto)}}
 .tile{width:120px;height:120px;border-radius:20px;background:var(--panel);border:1px solid var(--line);box-shadow:0 0 0 6px #ffffff05,0 24px 60px #00000080;display:flex;align-items:center;justify-content:center;overflow:hidden}
@@ -120,7 +120,7 @@ footer a:hover{color:var(--ink)}
   <div class="wrap">
     <span class="pill">MIT · <b>no subscription</b></span>
     <div class="hero-text">
-      <h1><span class="hero-bh" aria-hidden="true"><canvas class="orb" width="1040" height="400" data-orb-body="gargantua"></canvas></span>Free libraries. No subscription.</h1>
+      <h1><span class="hero-bh" aria-hidden="true"><canvas class="orb" width="1120" height="400" data-orb-body="gargantua" data-orb-reach="9"></canvas></span>Free libraries. No subscription.</h1>
       <p>Small open-source tools for the web, MIT licensed and staying that way. There's no pro tier and
         nothing behind a paywall. If one of them saved you an afternoon, say thanks: <b>shout me a beer or a coffee.</b></p>
     </div>
@@ -151,7 +151,7 @@ footer a:hover{color:var(--ink)}
           <canvas class="orb" width="88" height="88" data-orb-body="orion"></canvas>
           <canvas class="orb" width="88" height="88" data-orb-body="saturn"></canvas>
         </div>
-        <h3>Ephemeris <span class="ver mono">0.9.3</span></h3>
+        <h3>Ephemeris <span class="ver mono">0.9.4</span></h3>
         <p>Celestial stipple: things in the sky drawn as dots on one canvas. Ten kinds of body and forty-two
           named ones, from the Milky Way and Andromeda to Saturn, the Sun, the Moon and Halley. A playground
           writes the tag for you. Loading states
@@ -180,7 +180,7 @@ footer a:hover{color:var(--ink)}
     <p class="sub">Paste two lines. Your coding agent can do it from the README if you'd rather not.</p>
     <div class="steps">
       <div class="step"><div class="n">1</div><h3>Add the script</h3><p>From the repo or a CDN. One file, nothing to install.</p>
-<pre><code>&lt;script src="https://cdn.jsdelivr.net/gh/TonkaTuff/ephemeris@v0.9.3/dist/ephemeris.min.js"&gt;&lt;/script&gt;</code></pre></div>
+<pre><code>&lt;script src="https://cdn.jsdelivr.net/gh/TonkaTuff/ephemeris@v0.9.4/dist/ephemeris.min.js"&gt;&lt;/script&gt;</code></pre></div>
       <div class="step"><div class="n">2</div><h3>Drop in a canvas</h3><p>Height is the preset. Width lets wide ones stretch. Every option is a data attribute.</p>
 <pre><code>&lt;canvas class="orb" width="64" height="64"
         data-orb-body="andromeda"&gt;&lt;/canvas&gt;</code></pre></div>
@@ -226,6 +226,6 @@ footer a:hover{color:var(--ink)}
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/gh/TonkaTuff/ephemeris@v0.9.3/dist/ephemeris.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TonkaTuff/ephemeris@v0.9.4/dist/ephemeris.min.js"></script>
 </body>
 </html>
