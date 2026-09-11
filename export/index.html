@@ -89,6 +89,7 @@ fieldset .reset{grid-column:1/-1;justify-self:start;margin-top:2px;background:no
 .thanks{margin-top:18px;background:linear-gradient(180deg,#12151c,#0f1218);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap}
 .thanks p{margin:0;color:var(--ink-2);max-width:56ch}
 .thanks p b{color:var(--ink)}
+.thanks .pay{display:flex;gap:10px;flex-wrap:wrap}
 
 footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--ink-3);font-size:14px}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
@@ -105,7 +106,7 @@ footer a:hover{color:var(--ink)}
     <div class="links"><a href="../#libraries">Libraries</a><a class="now" href="./">Export</a><a href="https://tonkatuff.github.io/ephemeris/">Playground</a><a href="../#faq">FAQ</a></div>
     <div class="spacer"></div>
     <a class="btn small" href="https://github.com/TonkaTuff/ephemeris">GitHub</a>
-    <a class="btn small yellow" href="https://github.com/sponsors/TonkaTuff">Say thanks 🍺</a>
+    <a class="btn small yellow" href="#thanks">Say thanks 🍺</a>
   </div>
 </nav>
 
@@ -174,9 +175,12 @@ footer a:hover{color:var(--ink)}
     <div class="status" id="status" hidden><div class="bar"><i id="barFill"></i></div><span id="statusText"></span></div>
   </div>
 
-  <div class="thanks">
+  <div class="thanks" id="thanks">
     <p><b>This one's free, whatever size you pick.</b> If it saved you an hour, or ended up on a wall, say thanks and shout me a beer or a coffee.</p>
-    <a class="btn yellow" href="https://github.com/sponsors/TonkaTuff">🍺 Shout me a beer</a>
+    <div class="pay">
+      <a class="btn yellow" href="https://github.com/sponsors/TonkaTuff">🍺 Shout me a beer</a>
+      <a class="btn yellow" href="https://ko-fi.com/tonkatuff">☕ Or a coffee</a>
+    </div>
   </div>
 </main>
 

@@ -88,6 +88,9 @@ pre code{border:0;padding:0;background:none}
 @media (max-width:760px){.beer{grid-template-columns:1fr}}
 .beer h2{margin:0 0 8px}
 .beer p{margin:0;color:var(--ink-2);max-width:56ch}
+.beer p.via{margin-top:10px;font-size:13px}
+.beer .pay{display:flex;flex-direction:column;gap:10px}
+@media (max-width:760px){.beer .pay{flex-direction:row;flex-wrap:wrap}}
 
 details{border-top:1px solid var(--line);padding:16px 0}
 details:last-of-type{border-bottom:1px solid var(--line)}
@@ -112,7 +115,7 @@ footer a:hover{color:var(--ink)}
     <div class="links"><a href="#libraries">Libraries</a><a href="export/">Export</a><a href="#how">How to use</a><a href="#faq">FAQ</a></div>
     <div class="spacer"></div>
     <a class="btn small" href="https://github.com/TonkaTuff">GitHub</a>
-    <a class="btn small amber" href="https://github.com/sponsors/TonkaTuff">Say thanks 🍺</a>
+    <a class="btn small amber" href="#thanks">Say thanks 🍺</a>
   </div>
 </nav>
 
@@ -125,7 +128,8 @@ footer a:hover{color:var(--ink)}
         nothing behind a paywall. If one of them saved you an afternoon, say thanks: <b>shout me a beer or a coffee.</b></p>
     </div>
     <div class="cta">
-      <a class="btn amber" href="https://github.com/sponsors/TonkaTuff">🍺 Shout me a beer or coffee</a>
+      <a class="btn amber" href="https://github.com/sponsors/TonkaTuff">🍺 Shout me a beer</a>
+      <a class="btn amber" href="https://ko-fi.com/tonkatuff">☕ Or a coffee</a>
       <a class="btn" href="#libraries">Browse the libraries</a>
     </div>
     <div class="tile-row" aria-hidden="true">
@@ -193,7 +197,7 @@ footer a:hover{color:var(--ink)}
   </div>
 </section>
 
-<section>
+<section id="thanks">
   <div class="wrap">
     <div class="beer">
       <div>
@@ -201,8 +205,12 @@ footer a:hover{color:var(--ink)}
         <p>I'm not going to charge a monthly fee for a loading spinner. Everything here stays free and MIT,
           commercial use included. If something saved you time and you feel like it, shout me a beer or a
           coffee. If not, no hard feelings.</p>
+        <p class="via">Beer goes through GitHub Sponsors. Coffee goes through Ko-fi, which doesn't need an account.</p>
       </div>
-      <a class="btn amber" href="https://github.com/sponsors/TonkaTuff">🍺 Shout me a beer or coffee</a>
+      <div class="pay">
+        <a class="btn amber" href="https://github.com/sponsors/TonkaTuff">🍺 Shout me a beer</a>
+        <a class="btn amber" href="https://ko-fi.com/tonkatuff">☕ Shout me a coffee</a>
+      </div>
     </div>
   </div>
 </section>
@@ -222,7 +230,7 @@ footer a:hover{color:var(--ink)}
 <footer>
   <div class="wrap">
     <span>TonkaTuff</span>
-    <span><a href="https://github.com/TonkaTuff">GitHub</a> · <a href="https://github.com/sponsors/TonkaTuff">Sponsors</a> · <a href="https://github.com/TonkaTuff/tonkatuff.com">This site</a></span>
+    <span><a href="https://github.com/TonkaTuff">GitHub</a> · <a href="https://github.com/sponsors/TonkaTuff">Sponsors</a> · <a href="https://ko-fi.com/tonkatuff">Ko-fi</a> · <a href="https://github.com/TonkaTuff/tonkatuff.com">This site</a></span>
   </div>
 </footer>
 
