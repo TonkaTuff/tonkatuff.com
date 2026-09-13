@@ -232,15 +232,33 @@ footer a:hover{color:var(--ink)}
           <a class="btn small" href="https://github.com/TonkaTuff/swell">GitHub</a>
         </div>
       </div>
+      <div class="card">
+        <div class="preview">
+          <canvas class="gear" width="150" height="88" data-gear-body="clockwork"></canvas>
+          <canvas class="gear" width="88" height="88" data-gear-body="anchor"></canvas>
+          <canvas class="gear" width="88" height="88" data-gear-body="lissajous"></canvas>
+          <canvas class="gear" width="120" height="88" data-gear-body="radar"></canvas>
+        </div>
+        <h3>Escapement <span class="ver mono">0.1.0</span></h3>
+        <p>Machines, drawn as dots. Gears meshing at the ratio of their teeth, an anchor escapement letting the
+          wheel slip a tooth every half swing, pendulums in a wave and in a cradle, a harmonograph drawing,
+          a radar going round. Loaders that look like something. Seventeen named machines, every angle a
+          function of time, so the tick lands at the same moment every time. Same dots as the other five.</p>
+        <div class="tags"><span class="tag">canvas 2d</span><span class="tag">no deps</span><span class="tag">17 named machines</span><span class="tag">MIT</span></div>
+        <div class="row">
+          <a class="btn small" href="https://tonkatuff.github.io/escapement/">Playground</a>
+          <a class="btn small" href="https://github.com/TonkaTuff/escapement">GitHub</a>
+        </div>
+      </div>
     </div>
-    <p class="more">More on the way. All five libraries take requests: <a href="https://github.com/TonkaTuff/ephemeris/issues">open an issue</a> with a photo of the thing. Other libraries land here when they're ready to use, not before.</p>
+    <p class="more">More on the way. All six libraries take requests: <a href="https://github.com/TonkaTuff/ephemeris/issues">open an issue</a> with a photo of the thing. Other libraries land here when they're ready to use, not before.</p>
   </div>
 </section>
 
 <section id="how">
   <div class="wrap">
     <h2>How to use</h2>
-    <p class="sub">Paste two lines. Your coding agent can do it from the README if you'd rather not. Coriolis, Swarm, Ignis and Swell work the same way, with <code>class="wx"</code>, <code>class="swarm"</code>, <code>class="fire"</code> or <code>class="water"</code> and the matching <code>data-wx-</code>, <code>data-swarm-</code>, <code>data-fire-</code> or <code>data-water-</code> attributes.</p>
+    <p class="sub">Paste two lines. Your coding agent can do it from the README if you'd rather not. Coriolis, Swarm, Ignis, Swell and Escapement work the same way, with <code>class="wx"</code>, <code>class="swarm"</code>, <code>class="fire"</code>, <code>class="water"</code> or <code>class="gear"</code> and the matching <code>data-wx-</code>, <code>data-swarm-</code>, <code>data-fire-</code>, <code>data-water-</code> or <code>data-gear-</code> attributes.</p>
     <div class="steps">
       <div class="step"><div class="n">1</div><h3>Add the script</h3><p>From the repo or a CDN. One file, nothing to install.</p>
 <pre><code>&lt;script src="https://cdn.jsdelivr.net/gh/TonkaTuff/ephemeris@v0.11.0/dist/ephemeris.min.js"&gt;&lt;/script&gt;</code></pre></div>
@@ -298,5 +316,6 @@ footer a:hover{color:var(--ink)}
 <script src="https://cdn.jsdelivr.net/gh/TonkaTuff/swarm@v0.2.0/dist/swarm.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/TonkaTuff/ignis@v0.2.0/dist/ignis.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/TonkaTuff/swell@v0.1.0/dist/swell.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TonkaTuff/escapement@v0.1.0/dist/escapement.min.js"></script>
 </body>
 </html>
