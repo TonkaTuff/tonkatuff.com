@@ -71,9 +71,6 @@ section .sub{margin:0 0 28px;color:var(--ink-2);max-width:60ch}
 .tags{display:flex;gap:6px;flex-wrap:wrap}
 .tag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);border:1px solid var(--line-2);border-radius:4px;padding:2px 7px}
 .card .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
-.card.wide{grid-column:span 2}
-@media (max-width:700px){.card.wide{grid-column:auto}}
-.card.wide .preview{gap:14px}
 .more{margin:18px 0 0;color:var(--ink-3);font-size:14px}
 .more a{color:var(--ink-2)}
 
@@ -215,23 +212,6 @@ footer a:hover{color:var(--ink)}
         <div class="row">
           <a class="btn small" href="https://tonkatuff.github.io/ignis/">Playground</a>
           <a class="btn small" href="https://github.com/TonkaTuff/ignis">GitHub</a>
-        </div>
-      </div>
-      <div class="card wide">
-        <div class="preview">
-          <canvas class="orb" width="120" height="88" data-orb-body="gargantua"></canvas>
-          <canvas class="wx" width="88" height="88" data-wx-body="yasi"></canvas>
-          <canvas class="swarm" width="88" height="88" data-swarm-body="starlings"></canvas>
-          <canvas class="fire" width="88" height="88" data-fire-body="campfire"></canvas>
-          <canvas class="fire" width="88" height="88" data-fire-body="fireworks"></canvas>
-        </div>
-        <h3>Export <span class="ver mono">png · gif · webm</span></h3>
-        <p>Any of the hundred and thirty-six things above as a PNG, a GIF or a WebM, at any size: wallpapers,
-          slides, README heroes, stream overlays. Pick one, pick a size, download. It all renders in your
-          browser, nothing gets uploaded, and every size is free.</p>
-        <div class="tags"><span class="tag">136 things</span><span class="tag">any size</span><span class="tag">in your browser</span><span class="tag">free</span></div>
-        <div class="row">
-          <a class="btn small" href="export/">Open the export page</a>
         </div>
       </div>
     </div>
