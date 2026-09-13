@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Export · TonkaTuff</title>
-<meta name="description" content="Render any Ephemeris body as a PNG, GIF, or WebM at any size. Wallpapers, slides, README heroes, stream overlays. Free.">
+<meta name="description" content="Render any Ephemeris body or Coriolis weather event as a PNG, GIF, or WebM at any size. Wallpapers, slides, README heroes, stream overlays. Free.">
 <meta property="og:title" content="Export · TonkaTuff">
-<meta property="og:description" content="Any of the 45 bodies as a PNG, GIF, or WebM, any size. Free.">
+<meta property="og:description" content="Ninety bodies and weather events as a PNG, GIF, or WebM, any size. Free.">
 <meta property="og:image" content="https://tonkatuff.com/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -110,15 +110,15 @@ footer a:hover{color:var(--ink)}
     <a class="brand" href="../"><canvas class="orb" width="26" height="26" data-orb-mode="blackhole" data-orb-lite="1"></canvas>TonkaTuff</a>
     <div class="links"><a href="../#libraries">Libraries</a><a class="now" href="./">Export</a><a href="https://tonkatuff.github.io/ephemeris/">Playground</a><a href="../#faq">FAQ</a></div>
     <div class="spacer"></div>
-    <a class="btn small" href="https://github.com/TonkaTuff/ephemeris">GitHub</a>
+    <a class="btn small" href="https://github.com/TonkaTuff">GitHub</a>
     <a class="btn small yellow" href="#thanks">Say thanks 🍺</a>
   </div>
 </nav>
 
 <main class="wrap">
   <div class="top">
-    <h1>Export a body</h1>
-    <p>Pick one of the 45, pick a size, download. <b>PNG</b> for a still, <b>GIF</b> or <b>WebM</b> for the motion.
+    <h1>Export a body, or the weather</h1>
+    <p>Ninety to pick from: forty-five things in the sky and forty-five kinds of weather. Pick a size, download. <b>PNG</b> for a still, <b>GIF</b> or <b>WebM</b> for the motion.
       It all renders in your browser, nothing gets uploaded, and every size is free.</p>
   </div>
 
@@ -157,7 +157,7 @@ footer a:hover{color:var(--ink)}
       <div class="checks">
         <label><input type="checkbox" id="ink"> ink</label>
         <label><input type="checkbox" id="lite"> lite</label>
-        <label><input type="checkbox" id="space"> space</label>
+        <label title="stars behind a body, sea or sky behind a weather event"><input type="checkbox" id="space"> backdrop</label>
         <label><input type="checkbox" id="glow" checked> glow</label>
       </div>
       <fieldset id="colors"><legend>Colours</legend></fieldset>
@@ -192,16 +192,20 @@ footer a:hover{color:var(--ink)}
 
 <footer>
   <div class="wrap">
-    <span>Made by TonkaTuff. Renders come out of <a href="https://github.com/TonkaTuff/ephemeris">Ephemeris</a>, MIT, so use them for whatever you like.</span>
+    <span>Made by TonkaTuff. Renders come out of <a href="https://github.com/TonkaTuff/ephemeris">Ephemeris</a> and <a href="https://github.com/TonkaTuff/coriolis">Coriolis</a>, MIT, so use them for whatever you like.</span>
     <span><a href="../">tonkatuff.com</a> · <a href="https://github.com/TonkaTuff/tonkatuff.com">This site</a></span>
   </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/gh/TonkaTuff/ephemeris@v0.11.0/dist/ephemeris.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TonkaTuff/coriolis@v0.5.0/dist/coriolis.min.js"></script>
 <script src="../vendor/gif.js"></script>
 <script>
 (() => {
-  const E = window.Ephemeris, $ = id => document.getElementById(id);
+  // two libraries with the same shape: a body belongs to whichever lists it in its GROUPS
+  const LIBS = [window.Ephemeris, window.Coriolis], LIB_OF = {}, $ = id => document.getElementById(id);
+  for (const L of LIBS) for (const names of Object.values(L.GROUPS)) for (const n of names) LIB_OF[n] = L;
+  const lib = () => LIB_OF[st.body], parse = LIBS[0].palette.parse;
   const SHAPES = { '1:1': 1, '2:1': 2, '3:1': 3, '4:3': 4 / 3, '16:9': 16 / 9, '9:16': 9 / 16 };
   const GROUNDS = { 't-dark': [null, '#0d0d12', true], 't-light': [null, '#f6f6f3', false], dark: ['#0d0d12', '#0d0d12', true], light: ['#f6f6f3', '#f6f6f3', false] };
   const st = { body: 'gargantua', shape: '2:1', height: 512, ground: 't-dark', groundCol: '#0d0d12', ink: false, lite: false, space: false, glow: true, colors: {}, dur: 4, fps: 15 };
@@ -209,18 +213,18 @@ footer a:hover{color:var(--ink)}
 
   // body select, grouped
   const sel = $('body');
-  for (const [grp, names] of Object.entries(E.GROUPS)) {
+  for (const L of LIBS) for (const [grp, names] of Object.entries(L.GROUPS)) {
     const og = document.createElement('optgroup'); og.label = grp; sel.appendChild(og);
     for (const n of names) { const o = document.createElement('option'); o.value = n; o.textContent = n; og.appendChild(o); }
   }
   sel.value = st.body;
 
   // one-click rows for these families, built from the library so a new body shows up here on its own
-  const PICK_ROWS = ['Galaxies', 'Nebulae', 'Stars', 'Comets', 'Black holes'];
-  const nice = n => ({ bodes: "Bode's", 'ngc-1300': 'NGC 1300', sn1987a: 'SN 1987A', 'hale-bopp': 'Hale-Bopp', neowise: 'NEOWISE', 'sgr-a': 'Sgr A*', 'ton-618': 'TON 618', 'cygnus-x1': 'Cygnus X-1' })[n] || n.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
+  const PICK_ROWS = ['Galaxies', 'Nebulae', 'Stars', 'Comets', 'Black holes', 'Cyclones', 'Lightning', 'Tornadoes', 'Aurora'];
+  const nice = n => ({ bodes: "Bode's", 'ngc-1300': 'NGC 1300', sn1987a: 'SN 1987A', 'hale-bopp': 'Hale-Bopp', neowise: 'NEOWISE', 'sgr-a': 'Sgr A*', 'ton-618': 'TON 618', 'cygnus-x1': 'Cygnus X-1', 'tri-state': 'Tri-State' })[n] || n.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
   const picks = $('bodyPicks');
   for (const grp of PICK_ROWS) {
-    const names = E.GROUPS[grp]; if (!names) continue;
+    const names = LIBS.map(L => L.GROUPS[grp]).find(Boolean); if (!names) continue;
     const row = document.createElement('div'); row.className = 'presets'; row.setAttribute('aria-label', grp);
     row.innerHTML = `<span class="picklabel">${grp}</span>`;
     for (const n of names) {
@@ -233,11 +237,11 @@ footer a:hover{color:var(--ink)}
   function markPick() { for (const b of picks.querySelectorAll('[data-body]')) { const on = b.dataset.body === st.body; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); } }
 
   const hex = c => '#' + c.map(v => v.toString(16).padStart(2, '0')).join('');
-  const defaults = () => { const b = E.BODIES[st.body]; return b.palette || E.MODES[b.mode].defaults; };
-  const palette = () => { const d = defaults(), q = {}; for (const k of E.palette.keys) q[k] = (st.colors[k] && E.palette.parse(st.colors[k])) || d[k]; return q; };
+  const defaults = () => { const L = lib(), b = L.BODIES[st.body]; return b.palette || L.MODES[b.mode].defaults; };
+  const palette = () => { const d = defaults(), q = {}; for (const k of lib().palette.keys) q[k] = (st.colors[k] && parse(st.colors[k])) || d[k]; return q; };
   const ground = () => {   // [fill or null for transparent, flat fill for formats without alpha, dark?]
     if (st.ground !== 'custom') return GROUNDS[st.ground];
-    const c = E.palette.parse(st.groundCol) || [13, 13, 18], lum = (0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]) / 255;
+    const c = parse(st.groundCol) || [13, 13, 18], lum = (0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]) / 255;
     return [st.groundCol, st.groundCol, lum < 0.5];
   };
   const dims = () => ({ W: Math.round(st.height * SHAPES[st.shape] / 2) * 2, H: st.height });
@@ -248,7 +252,8 @@ footer a:hover{color:var(--ink)}
     ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, W, H);
     const f = flat ? flatFill : fill; if (f) { ctx.fillStyle = f; ctx.fillRect(0, 0, W, H); }
     ctx.scale(s, s);
-    E.body(st.body, ctx, L, t, dark, { w: W / s, ink: st.ink, lite: st.lite, space: st.space, glow: st.glow, palette: palette() });
+    // `space` is Ephemeris's backdrop and `ground` is Coriolis's; each library ignores the other's flag
+    lib().body(st.body, ctx, L, t, dark, { w: W / s, ink: st.ink, lite: st.lite, space: st.space, ground: st.space, glow: st.glow, palette: palette() });
     ctx.setTransform(1, 0, 0, 1, 0, 0);
   }
 
@@ -257,7 +262,7 @@ footer a:hover{color:var(--ink)}
   function buildColors() {
     cols.innerHTML = '<legend>Colours</legend>';
     const d = defaults();
-    for (const k of E.palette.keys) {
+    for (const k of lib().palette.keys) {
       const l = document.createElement('label'); l.textContent = k;
       const i = document.createElement('input'); i.type = 'color'; i.value = st.colors[k] || hex(d[k]);
       i.oninput = () => { st.colors[k] = i.value; };
@@ -277,7 +282,7 @@ footer a:hover{color:var(--ink)}
     pv.width = Math.round(w * dpr); pv.height = Math.round(h * dpr); pv.style.width = Math.round(w) + 'px';
     frame.className = 'frame' + (st.ground === 't-dark' ? ' checker-dark' : st.ground === 't-light' ? ' checker-light' : '');
     const { W, H } = dims();
-    $('meta').innerHTML = `<span>${W} × ${H}</span><span>${st.body}</span><span>${E.BODIES[st.body].mode}</span>`;
+    $('meta').innerHTML = `<span>${W} × ${H}</span><span>${st.body}</span><span>${lib().BODIES[st.body].mode}</span>`;
     $('hint').textContent = `GIF caps at 1024 on the long side and gets a solid ground. WebM records in real time, ${st.dur} s.`;
   }
   let last = performance.now();
