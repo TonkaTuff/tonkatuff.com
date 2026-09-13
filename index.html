@@ -171,10 +171,28 @@ footer a:hover{color:var(--ink)}
           <a class="btn small" href="https://github.com/TonkaTuff/ephemeris">GitHub</a>
         </div>
       </div>
+      <div class="card">
+        <div class="preview">
+          <canvas class="wx" width="150" height="88" data-wx-body="yasi"></canvas>
+          <canvas class="wx" width="88" height="88" data-wx-body="tracy"></canvas>
+          <canvas class="wx" width="88" height="88" data-wx-body="katrina"></canvas>
+          <canvas class="wx" width="88" height="88" data-wx-body="sandy"></canvas>
+        </div>
+        <h3>Coriolis <span class="ver mono">0.1.0</span></h3>
+        <p>Weather events, drawn as dots. Named cyclones, hurricanes and typhoons as the satellite sees them:
+          an eye, an eyewall and rainbands spiralling in, each spinning the right way for its hemisphere.
+          Fifteen storms so far, from Tracy to Haiyan. Sister to Ephemeris, and the dots match, so the two
+          sit together on a page.</p>
+        <div class="tags"><span class="tag">canvas 2d</span><span class="tag">no deps</span><span class="tag">15 named storms</span><span class="tag">MIT</span></div>
+        <div class="row">
+          <a class="btn small" href="https://tonkatuff.github.io/coriolis/">Playground</a>
+          <a class="btn small" href="https://github.com/TonkaTuff/coriolis">GitHub</a>
+        </div>
+      </div>
       <div class="card soon">
         <div class="preview"><canvas class="orb" width="88" height="88" data-orb-body="halley"></canvas><canvas class="orb" width="88" height="88" data-orb-body="totality"></canvas><canvas class="orb" width="88" height="88" data-orb-body="solar-system"></canvas></div>
         <h3>More on the way</h3>
-        <p>Ephemeris takes requests: open an issue with a photo of the object. Other libraries land
+        <p>Both libraries take requests: open an issue with a photo of the thing. Other libraries land
           here when they're ready to use, not before.</p>
         <div class="row"><a class="btn small" href="https://github.com/TonkaTuff/ephemeris/issues">Request something</a></div>
       </div>
@@ -185,7 +203,7 @@ footer a:hover{color:var(--ink)}
 <section id="how">
   <div class="wrap">
     <h2>How to use</h2>
-    <p class="sub">Paste two lines. Your coding agent can do it from the README if you'd rather not.</p>
+    <p class="sub">Paste two lines. Your coding agent can do it from the README if you'd rather not. Coriolis works the same way, with <code>class="wx"</code> and <code>data-wx-</code> attributes.</p>
     <div class="steps">
       <div class="step"><div class="n">1</div><h3>Add the script</h3><p>From the repo or a CDN. One file, nothing to install.</p>
 <pre><code>&lt;script src="https://cdn.jsdelivr.net/gh/TonkaTuff/ephemeris@v0.11.0/dist/ephemeris.min.js"&gt;&lt;/script&gt;</code></pre></div>
@@ -239,5 +257,6 @@ footer a:hover{color:var(--ink)}
 </footer>
 
 <script src="https://cdn.jsdelivr.net/gh/TonkaTuff/ephemeris@v0.11.0/dist/ephemeris.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TonkaTuff/coriolis@v0.1.0/dist/coriolis.min.js"></script>
 </body>
 </html>
