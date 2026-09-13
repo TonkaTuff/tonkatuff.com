@@ -57,12 +57,7 @@ nav .spacer{flex:1}
 .hero-bh{display:block;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:-1;pointer-events:none;opacity:.75}
 .hero-text h1,.hero-text p{text-shadow:0 0 4px var(--ground),0 0 14px var(--ground),0 0 28px var(--ground)}
 .hero-bh canvas{display:block;width:min(1120px,180vw)!important;height:auto!important}
-.tile-row{display:grid;grid-template-columns:repeat(6,auto);gap:14px;justify-content:center;margin-top:22px}
-@media (max-width:880px){.tile-row{grid-template-columns:repeat(3,auto)}}
-.tile{width:120px;height:120px;border-radius:20px;background:var(--panel);border:1px solid var(--line);box-shadow:0 0 0 6px #ffffff05,0 24px 60px #00000080;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.tile canvas{display:block}
 @media (max-width:980px){.hero{min-height:0;padding-top:64px}}
-@media (max-width:560px){.tile-row{gap:10px}.tile{width:96px;height:96px}}
 
 section{padding:64px 0}
 section h2{margin:0 0 6px;font-size:28px;font-weight:800;letter-spacing:-.025em}
@@ -76,8 +71,11 @@ section .sub{margin:0 0 28px;color:var(--ink-2);max-width:60ch}
 .tags{display:flex;gap:6px;flex-wrap:wrap}
 .tag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);border:1px solid var(--line-2);border-radius:4px;padding:2px 7px}
 .card .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
-.card.soon{border-style:dashed;opacity:.75}
-.card.soon .preview{background:transparent}
+.card.wide{grid-column:span 2}
+@media (max-width:700px){.card.wide{grid-column:auto}}
+.card.wide .preview{gap:14px}
+.more{margin:18px 0 0;color:var(--ink-3);font-size:14px}
+.more a{color:var(--ink-2)}
 
 .steps{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
 .step{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px}
@@ -136,14 +134,6 @@ footer a:hover{color:var(--ink)}
       <a class="btn amber" href="https://ko-fi.com/tonkatuff">☕ Or a coffee</a>
       <a class="btn" href="#libraries">Browse the libraries</a>
     </div>
-    <div class="tile-row" aria-hidden="true">
-      <div class="tile"><canvas class="orb" width="104" height="104" data-orb-body="earth"></canvas></div>
-      <div class="tile"><canvas class="orb" width="104" height="104" data-orb-body="andromeda"></canvas></div>
-      <div class="tile"><canvas class="orb" width="104" height="104" data-orb-body="saturn"></canvas></div>
-      <div class="tile"><canvas class="swarm" width="104" height="104" data-swarm-body="starlings"></canvas></div>
-      <div class="tile"><canvas class="wx" width="104" height="104" data-wx-body="yasi"></canvas></div>
-      <div class="tile"><canvas class="fire" width="104" height="104" data-fire-body="campfire"></canvas></div>
-    </div>
   </div>
 </header>
 
@@ -167,7 +157,6 @@ footer a:hover{color:var(--ink)}
         <div class="tags"><span class="tag">canvas 2d</span><span class="tag">no deps</span><span class="tag">45 named bodies</span><span class="tag">MIT</span></div>
         <div class="row">
           <a class="btn small" href="https://tonkatuff.github.io/ephemeris/">Playground</a>
-          <a class="btn small" href="export/">Export</a>
           <a class="btn small" href="https://github.com/TonkaTuff/ephemeris">GitHub</a>
         </div>
       </div>
@@ -187,7 +176,6 @@ footer a:hover{color:var(--ink)}
         <div class="tags"><span class="tag">canvas 2d</span><span class="tag">no deps</span><span class="tag">57 named events</span><span class="tag">MIT</span></div>
         <div class="row">
           <a class="btn small" href="https://tonkatuff.github.io/coriolis/">Playground</a>
-          <a class="btn small" href="export/?body=yasi">Export</a>
           <a class="btn small" href="https://github.com/TonkaTuff/coriolis">GitHub</a>
         </div>
       </div>
@@ -207,7 +195,6 @@ footer a:hover{color:var(--ink)}
         <div class="tags"><span class="tag">canvas 2d</span><span class="tag">no deps</span><span class="tag">13 named swarms</span><span class="tag">MIT</span></div>
         <div class="row">
           <a class="btn small" href="https://tonkatuff.github.io/swarm/">Playground</a>
-          <a class="btn small" href="export/?body=starlings">Export</a>
           <a class="btn small" href="https://github.com/TonkaTuff/swarm">GitHub</a>
         </div>
       </div>
@@ -227,18 +214,28 @@ footer a:hover{color:var(--ink)}
         <div class="tags"><span class="tag">canvas 2d</span><span class="tag">no deps</span><span class="tag">21 named fires</span><span class="tag">MIT</span></div>
         <div class="row">
           <a class="btn small" href="https://tonkatuff.github.io/ignis/">Playground</a>
-          <a class="btn small" href="export/?body=campfire">Export</a>
           <a class="btn small" href="https://github.com/TonkaTuff/ignis">GitHub</a>
         </div>
       </div>
-      <div class="card soon">
-        <div class="preview"><canvas class="orb" width="88" height="88" data-orb-body="halley"></canvas><canvas class="orb" width="88" height="88" data-orb-body="totality"></canvas><canvas class="orb" width="88" height="88" data-orb-body="solar-system"></canvas></div>
-        <h3>More on the way</h3>
-        <p>All four libraries take requests: open an issue with a photo of the thing. Other libraries land
-          here when they're ready to use, not before.</p>
-        <div class="row"><a class="btn small" href="https://github.com/TonkaTuff/ephemeris/issues">Request something</a></div>
+      <div class="card wide">
+        <div class="preview">
+          <canvas class="orb" width="120" height="88" data-orb-body="gargantua"></canvas>
+          <canvas class="wx" width="88" height="88" data-wx-body="yasi"></canvas>
+          <canvas class="swarm" width="88" height="88" data-swarm-body="starlings"></canvas>
+          <canvas class="fire" width="88" height="88" data-fire-body="campfire"></canvas>
+          <canvas class="fire" width="88" height="88" data-fire-body="fireworks"></canvas>
+        </div>
+        <h3>Export <span class="ver mono">png · gif · webm</span></h3>
+        <p>Any of the hundred and thirty-six things above as a PNG, a GIF or a WebM, at any size: wallpapers,
+          slides, README heroes, stream overlays. Pick one, pick a size, download. It all renders in your
+          browser, nothing gets uploaded, and every size is free.</p>
+        <div class="tags"><span class="tag">136 things</span><span class="tag">any size</span><span class="tag">in your browser</span><span class="tag">free</span></div>
+        <div class="row">
+          <a class="btn small" href="export/">Open the export page</a>
+        </div>
       </div>
     </div>
+    <p class="more">More on the way. All four libraries take requests: <a href="https://github.com/TonkaTuff/ephemeris/issues">open an issue</a> with a photo of the thing. Other libraries land here when they're ready to use, not before.</p>
   </div>
 </section>
 
