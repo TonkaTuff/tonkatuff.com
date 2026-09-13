@@ -118,7 +118,7 @@ footer a:hover{color:var(--ink)}
 <main class="wrap">
   <div class="top">
     <h1>Export a body, the weather, a flock or a fire</h1>
-    <p>More than a hundred to pick from: forty-five things in the sky, fifty-seven kinds of weather, four murmurations and eleven fires. Pick a size, download. <b>PNG</b> for a still, <b>GIF</b> or <b>WebM</b> for the motion.
+    <p>More than a hundred to pick from: forty-five things in the sky, fifty-seven kinds of weather, thirteen swarms and twenty-one fires. Pick a size, download. <b>PNG</b> for a still, <b>GIF</b> or <b>WebM</b> for the motion.
       It all renders in your browser, nothing gets uploaded, and every size is free.</p>
   </div>
 
@@ -199,8 +199,8 @@ footer a:hover{color:var(--ink)}
 
 <script src="https://cdn.jsdelivr.net/gh/TonkaTuff/ephemeris@v0.11.0/dist/ephemeris.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/TonkaTuff/coriolis@v0.7.0/dist/coriolis.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TonkaTuff/swarm@v0.1.0/dist/swarm.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/TonkaTuff/ignis@v0.1.0/dist/ignis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TonkaTuff/swarm@v0.2.0/dist/swarm.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TonkaTuff/ignis@v0.2.0/dist/ignis.min.js"></script>
 <script src="../vendor/gif.js"></script>
 <script>
 (() => {
@@ -222,7 +222,7 @@ footer a:hover{color:var(--ink)}
   sel.value = st.body;
 
   // one-click rows for these families, built from the library so a new body shows up here on its own
-  const PICK_ROWS = ['Galaxies', 'Nebulae', 'Stars', 'Comets', 'Black holes', 'Cyclones', 'Lightning', 'Tornadoes', 'Aurora', 'Murmurations', 'Bushfires'];
+  const PICK_ROWS = ['Galaxies', 'Nebulae', 'Stars', 'Comets', 'Black holes', 'Cyclones', 'Lightning', 'Tornadoes', 'Aurora', 'Murmurations', 'Bait balls', 'Fireflies', 'Bushfires', 'Fireworks'];
   const nice = n => ({ bodes: "Bode's", 'ngc-1300': 'NGC 1300', sn1987a: 'SN 1987A', 'hale-bopp': 'Hale-Bopp', neowise: 'NEOWISE', 'sgr-a': 'Sgr A*', 'ton-618': 'TON 618', 'cygnus-x1': 'Cygnus X-1', 'tri-state': 'Tri-State' })[n] || n.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
   const picks = $('bodyPicks');
   for (const grp of PICK_ROWS) {
