@@ -16,74 +16,98 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 :root{
-  --ground:#0a0c11; --panel:#12151c; --panel-2:#171b23; --ink:#e9ecf1; --ink-2:#a3aab6; --ink-3:#6e7583;
+  --ground:#0a0c11; --panel:#12151c; --panel-2:#171b23; --well:#0d1017; --ink:#e9ecf1; --ink-2:#a3aab6; --ink-3:#6e7583;
   --line:#232833; --line-2:#2f3542; --amber:#fac800; --amber-ink:#141000; --amber-soft:#fac8001f;
 }
 *{box-sizing:border-box}
-html{color-scheme:dark}
-body{margin:0;background:var(--ground);color:var(--ink);font-family:Manrope,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+html{color-scheme:dark;scroll-behavior:smooth}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:Manrope,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
 a{color:inherit}
 .mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
-.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
 
 nav{position:sticky;top:0;z-index:5;background:#0a0c11cc;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;align-items:center;gap:22px;height:58px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.02em;text-decoration:none;font-size:17px}
+nav .wrap{display:flex;align-items:center;gap:22px;height:56px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.02em;text-decoration:none;font-size:16px}
 .brand canvas{display:block}
-nav .links{display:flex;gap:18px;margin-left:8px;font-size:14px;color:var(--ink-2);white-space:nowrap}
+nav .links{display:flex;gap:18px;margin-left:8px;font-size:13.5px;color:var(--ink-2);white-space:nowrap}
 @media (max-width:720px){nav .links{display:none}nav .wrap{gap:12px}}
 nav .links a{text-decoration:none}
 nav .links a:hover{color:var(--ink)}
 nav .spacer{flex:1}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;font-weight:700;font-size:14px;text-decoration:none;border:1px solid var(--line-2);color:var(--ink);background:var(--panel);transition:transform .15s ease,background .15s ease}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;font-weight:700;font-size:13.5px;text-decoration:none;border:1px solid var(--line-2);color:var(--ink);background:var(--panel);transition:transform .15s ease,background .15s ease;cursor:pointer;font-family:inherit;line-height:1.3}
 .btn:hover{transform:translateY(-1px);background:var(--panel-2)}
 .btn.amber{background:var(--amber);color:var(--amber-ink);border-color:var(--amber)}
 .btn.amber:hover{background:#ffd52e}
-.btn.small{padding:7px 12px;font-size:13px}
-.btn:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.btn.light{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.btn.light:hover{background:#fff}
+.btn.small{padding:6px 12px;font-size:12.5px}
+.btn:focus-visible,a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
 
-.hero{position:relative;padding:96px 0 72px;overflow:hidden;min-height:560px;display:flex;align-items:center}
-.hero .wrap{position:relative;text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px}
-.hero h1{margin:0;font-size:clamp(38px,6.4vw,66px);font-weight:800;letter-spacing:-.035em;line-height:1.02;text-wrap:balance;max-width:14ch}
-.hero p{margin:0;max-width:52ch;color:var(--ink-2);font-size:18px;text-wrap:pretty}
+.hero{position:relative;padding:88px 0 40px;overflow:hidden;min-height:520px;display:flex;align-items:center}
+.hero .wrap{position:relative;text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px}
+.hero h1{margin:0;font-size:clamp(38px,6vw,62px);font-weight:800;letter-spacing:-.035em;line-height:1.02;text-wrap:balance;max-width:14ch}
+.hero p{margin:0;max-width:50ch;color:var(--ink-2);font-size:17px;text-wrap:pretty}
 .hero p b{color:var(--ink);font-weight:700}
-.cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:8px}
-.pill{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);border:1px solid var(--line);border-radius:999px;padding:5px 12px}
-.pill b{color:var(--amber);font-weight:700;letter-spacing:0;text-transform:none;font-size:13px}
-
+.cta{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:6px}
+.pill{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+.pill b{color:var(--amber);font-weight:700;letter-spacing:0;text-transform:none;font-size:12.5px}
 .hero .pill{position:relative;z-index:1}
-.hero-text{position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:center;gap:18px}
+.hero-text{position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:center;gap:16px}
 .hero-text h1{position:relative}
 .hero-bh{display:block;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:-1;pointer-events:none;opacity:.75}
 .hero-text h1,.hero-text p{text-shadow:0 0 4px var(--ground),0 0 14px var(--ground),0 0 28px var(--ground)}
 .hero-bh canvas{display:block;width:min(1120px,180vw)!important;height:auto!important}
-@media (max-width:980px){.hero{min-height:0;padding-top:64px}}
+@media (max-width:980px){.hero{min-height:0;padding-top:60px}}
 
-section{padding:64px 0}
-section h2{margin:0 0 6px;font-size:28px;font-weight:800;letter-spacing:-.025em}
-section .sub{margin:0 0 28px;color:var(--ink-2);max-width:60ch}
-.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:14px;min-width:0}
-.card .preview{height:150px;border-radius:10px;background:#0d1017;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;gap:12px;overflow:hidden}
-.card h3{margin:0;font-size:19px;font-weight:800;letter-spacing:-.02em;display:flex;align-items:baseline;gap:10px}
-.card h3 .ver{font-size:12px;color:var(--ink-3);font-weight:500}
-.card p{margin:0;color:var(--ink-2);font-size:15px}
-.tags{display:flex;gap:6px;flex-wrap:wrap}
-.tag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);border:1px solid var(--line-2);border-radius:4px;padding:2px 7px}
-.card .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
-.more{margin:18px 0 0;color:var(--ink-3);font-size:14px}
+/* the gallery: filter row, then the grid of things */
+#things{padding:8px 0 56px}
+.filters{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 18px}
+.chip{border:1px solid var(--line-2);background:var(--panel);color:var(--ink-2);border-radius:999px;padding:6px 13px;font:600 13px/1.3 Manrope,sans-serif;cursor:pointer;transition:background .15s ease,color .15s ease}
+.chip:hover{color:var(--ink);background:var(--panel-2)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.filters .count{margin-left:auto;color:var(--ink-3);font-size:13px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.thing{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:10px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.thing[hidden]{display:none}
+.thing .demo{position:relative;height:190px;border-radius:12px;background:var(--well);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.thing .demo canvas{display:block;max-width:100%;max-height:100%}
+.thing .demo .from{position:absolute;left:10px;top:9px;font:500 11px/1 "IBM Plex Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.thing .meta{display:flex;align-items:flex-start;gap:10px;padding:2px 6px 4px}
+.thing .meta div{min-width:0;flex:1}
+.thing h3{margin:0;font-size:14.5px;font-weight:800;letter-spacing:-.01em}
+.thing p{margin:2px 0 0;color:var(--ink-2);font-size:13px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.copy{flex:none;width:34px;height:34px;border-radius:10px;border:1px solid var(--line-2);background:var(--panel-2);color:var(--ink-2);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s ease,color .15s ease}
+.copy:hover{color:var(--ink);background:#1d222c}
+.copy.done{color:var(--amber);border-color:var(--amber)}
+.copy svg{width:15px;height:15px}
+.more{margin:18px 0 0;color:var(--ink-3);font-size:13.5px}
 .more a{color:var(--ink-2)}
 
-.steps{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-.step{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px}
-.step .n{width:28px;height:28px;border-radius:50%;background:var(--amber-soft);color:var(--amber);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px}
-.step h3{margin:0;font-size:17px;font-weight:800;letter-spacing:-.01em}
-.step p{margin:0;color:var(--ink-2);font-size:15px}
-pre{margin:0;padding:12px 14px;background:#0d1017;border:1px solid var(--line);border-radius:10px;overflow-x:auto;font-size:12.5px;line-height:1.6;color:var(--ink)}
-code{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.92em;background:#0d1017;border:1px solid var(--line);padding:1px 5px;border-radius:4px}
+section{padding:56px 0}
+section h2{margin:0 0 6px;font-size:26px;font-weight:800;letter-spacing:-.025em}
+section .sub{margin:0 0 24px;color:var(--ink-2);max-width:62ch}
+.libs{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.lib{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.lib h3{margin:0;font-size:15.5px;font-weight:800;letter-spacing:-.01em;display:flex;align-items:baseline;gap:8px}
+.lib h3 .ver{font-size:11.5px;color:var(--ink-3);font-weight:500}
+.lib p{margin:0;color:var(--ink-2);font-size:13px}
+.lib .tag{align-self:flex-start;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);border:1px solid var(--line-2);border-radius:4px;padding:2px 7px}
+.lib .row{display:flex;gap:6px;margin-top:6px}
+.lib .row a{font-size:12.5px;color:var(--ink-2);text-decoration:none}
+.lib .row a:hover{color:var(--ink)}
+.lib .row a+a::before{content:"·";color:var(--ink-3);margin-right:6px}
+
+.steps{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.step .n{width:26px;height:26px;border-radius:50%;background:var(--amber-soft);color:var(--amber);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12.5px}
+.step h3{margin:0;font-size:16px;font-weight:800;letter-spacing:-.01em}
+.step p{margin:0;color:var(--ink-2);font-size:14px}
+pre{margin:0;padding:12px 14px;background:var(--well);border:1px solid var(--line);border-radius:10px;overflow-x:auto;font-size:12px;line-height:1.6;color:var(--ink)}
+code{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.92em;background:var(--well);border:1px solid var(--line);padding:1px 5px;border-radius:4px}
 pre code{border:0;padding:0;background:none}
 
-.beer{background:linear-gradient(180deg,#12151c,#0f1218);border:1px solid var(--line);border-radius:20px;padding:36px 28px;display:grid;gap:22px;grid-template-columns:1fr auto;align-items:center}
+.beer{background:linear-gradient(180deg,#12151c,#0f1218);border:1px solid var(--line);border-radius:20px;padding:32px 28px;display:grid;gap:22px;grid-template-columns:1fr auto;align-items:center}
 @media (max-width:760px){.beer{grid-template-columns:1fr}}
 .beer h2{margin:0 0 8px}
 .beer p{margin:0;color:var(--ink-2);max-width:56ch}
@@ -91,19 +115,19 @@ pre code{border:0;padding:0;background:none}
 .beer .pay{display:flex;flex-direction:column;gap:10px}
 @media (max-width:760px){.beer .pay{flex-direction:row;flex-wrap:wrap}}
 
-details{border-top:1px solid var(--line);padding:16px 0}
+details{border-top:1px solid var(--line);padding:14px 0}
 details:last-of-type{border-bottom:1px solid var(--line)}
-summary{cursor:pointer;font-weight:700;font-size:16px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary{cursor:pointer;font-weight:700;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center}
 summary::-webkit-details-marker{display:none}
 summary::after{content:"+";color:var(--ink-3);font-weight:500;font-size:20px}
 details[open] summary::after{content:"–"}
 details p{margin:10px 0 0;color:var(--ink-2);max-width:66ch}
 
-footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--ink-3);font-size:14px}
+footer{border-top:1px solid var(--line);padding:28px 0 44px;color:var(--ink-3);font-size:13.5px}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 footer a{color:var(--ink-2);text-decoration:none}
 footer a:hover{color:var(--ink)}
-@media (prefers-reduced-motion:reduce){.btn{transition:none}}
+@media (prefers-reduced-motion:reduce){.btn,.chip,.copy{transition:none}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
@@ -111,7 +135,7 @@ footer a:hover{color:var(--ink)}
 <nav>
   <div class="wrap">
     <a class="brand" href="#"><canvas class="orb" width="26" height="26" data-orb-mode="blackhole" data-orb-lite="1"></canvas>TonkaTuff</a>
-    <div class="links"><a href="#libraries">Libraries</a><a href="export/">Export</a><a href="#how">How to use</a><a href="#faq">FAQ</a></div>
+    <div class="links"><a href="#things">Things</a><a href="#libraries">Libraries</a><a href="export/">Export</a><a href="#how">How to use</a><a href="#faq">FAQ</a></div>
     <div class="spacer"></div>
     <a class="btn small" href="https://github.com/TonkaTuff">GitHub</a>
     <a class="btn small amber" href="#thanks">Say thanks 🍺</a>
@@ -120,205 +144,262 @@ footer a:hover{color:var(--ink)}
 
 <header class="hero">
   <div class="wrap">
-    <span class="pill">MIT · <b>no subscription</b></span>
     <div class="hero-text">
       <h1><span class="hero-bh" aria-hidden="true"><canvas class="orb" width="1120" height="400" data-orb-body="gargantua" data-orb-reach="9"></canvas></span>Stipple in Motion!</h1>
-      <p>Small open-source tools for the web, MIT licensed and staying that way. There's no pro tier and
-        nothing behind a paywall. If one of them saved you an afternoon, say thanks: <b>shout me a beer or a coffee.</b></p>
+      <p>Two hundred and fifty-one things drawn in dots, from a black hole to a kelp forest, each one a single script and a canvas tag. Free, MIT, nothing behind a paywall. <b>If one saved you an afternoon, shout me a beer.</b></p>
     </div>
     <div class="cta">
+      <a class="btn light" href="#things">Browse</a>
       <a class="btn amber" href="https://github.com/sponsors/TonkaTuff">🍺 Shout me a beer</a>
-      <a class="btn amber" href="https://ko-fi.com/tonkatuff">☕ Or a coffee</a>
-      <a class="btn" href="#libraries">Browse the libraries</a>
     </div>
   </div>
 </header>
 
+<section id="things">
+  <div class="wrap">
+    <div class="filters" role="group" aria-label="Filter by library">
+      <button class="chip" type="button" aria-pressed="true" data-filter="">All</button>
+      <button class="chip" type="button" aria-pressed="false" data-filter="ephemeris">Ephemeris</button>
+      <button class="chip" type="button" aria-pressed="false" data-filter="coriolis">Coriolis</button>
+      <button class="chip" type="button" aria-pressed="false" data-filter="swarm">Swarm</button>
+      <button class="chip" type="button" aria-pressed="false" data-filter="ignis">Ignis</button>
+      <button class="chip" type="button" aria-pressed="false" data-filter="swell">Swell</button>
+      <button class="chip" type="button" aria-pressed="false" data-filter="escapement">Escapement</button>
+      <button class="chip" type="button" aria-pressed="false" data-filter="dendrite">Dendrite</button>
+      <button class="chip" type="button" aria-pressed="false" data-filter="chladni">Chladni</button>
+      <button class="chip" type="button" aria-pressed="false" data-filter="tendril">Tendril</button>
+      <button class="chip" type="button" aria-pressed="false" data-filter="lumen">Lumen</button>
+      <span class="count" aria-live="polite">40 of 251</span>
+    </div>
+    <div class="grid">
+      <article class="thing" data-lib="ephemeris">
+        <div class="demo"><span class="from">Ephemeris</span><canvas class="orb" width="300" height="170" data-orb-body="gargantua"></canvas></div>
+        <div class="meta"><div><h3>Gargantua</h3><p>A black hole, its disc lensed over the top</p></div><button class="copy" type="button" title="Copy the two lines that put Gargantua on a page" aria-label="Copy the embed for Gargantua" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/ephemeris@v0.12.1/dist/ephemeris.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;orb&quot; width=&quot;120&quot; height=&quot;88&quot; data-orb-body=&quot;gargantua&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="ephemeris">
+        <div class="demo"><span class="from">Ephemeris</span><canvas class="orb" width="300" height="170" data-orb-body="andromeda"></canvas></div>
+        <div class="meta"><div><h3>Andromeda</h3><p>The nearest big galaxy, tilted, slowly turning</p></div><button class="copy" type="button" title="Copy the two lines that put Andromeda on a page" aria-label="Copy the embed for Andromeda" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/ephemeris@v0.12.1/dist/ephemeris.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;orb&quot; width=&quot;120&quot; height=&quot;88&quot; data-orb-body=&quot;andromeda&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="ephemeris">
+        <div class="demo"><span class="from">Ephemeris</span><canvas class="orb" width="300" height="170" data-orb-body="orion"></canvas></div>
+        <div class="meta"><div><h3>Orion</h3><p>The nebula, its dust and the Trapezium</p></div><button class="copy" type="button" title="Copy the two lines that put Orion on a page" aria-label="Copy the embed for Orion" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/ephemeris@v0.12.1/dist/ephemeris.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;orb&quot; width=&quot;120&quot; height=&quot;88&quot; data-orb-body=&quot;orion&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="ephemeris">
+        <div class="demo"><span class="from">Ephemeris</span><canvas class="orb" width="300" height="170" data-orb-body="saturn"></canvas></div>
+        <div class="meta"><div><h3>Saturn</h3><p>Rings edge-lit, the gap, a moon going round</p></div><button class="copy" type="button" title="Copy the two lines that put Saturn on a page" aria-label="Copy the embed for Saturn" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/ephemeris@v0.12.1/dist/ephemeris.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;orb&quot; width=&quot;120&quot; height=&quot;88&quot; data-orb-body=&quot;saturn&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="coriolis">
+        <div class="demo"><span class="from">Coriolis</span><canvas class="wx" width="300" height="170" data-wx-body="yasi"></canvas></div>
+        <div class="meta"><div><h3>Yasi</h3><p>Cyclone Yasi, spinning the southern way</p></div><button class="copy" type="button" title="Copy the two lines that put Yasi on a page" aria-label="Copy the embed for Yasi" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/coriolis@v0.8.0/dist/coriolis.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;wx&quot; width=&quot;120&quot; height=&quot;88&quot; data-wx-body=&quot;yasi&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="coriolis">
+        <div class="demo"><span class="from">Coriolis</span><canvas class="wx" width="300" height="170" data-wx-body="fork-lightning"></canvas></div>
+        <div class="meta"><div><h3>Fork lightning</h3><p>The strike, the branches, the afterglow</p></div><button class="copy" type="button" title="Copy the two lines that put Fork lightning on a page" aria-label="Copy the embed for Fork lightning" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/coriolis@v0.8.0/dist/coriolis.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;wx&quot; width=&quot;120&quot; height=&quot;88&quot; data-wx-body=&quot;fork-lightning&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="coriolis">
+        <div class="demo"><span class="from">Coriolis</span><canvas class="wx" width="300" height="170" data-wx-body="el-reno"></canvas></div>
+        <div class="meta"><div><h3>El Reno</h3><p>The widest tornado, rope to wedge</p></div><button class="copy" type="button" title="Copy the two lines that put El Reno on a page" aria-label="Copy the embed for El Reno" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/coriolis@v0.8.0/dist/coriolis.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;wx&quot; width=&quot;120&quot; height=&quot;88&quot; data-wx-body=&quot;el-reno&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="coriolis">
+        <div class="demo"><span class="from">Coriolis</span><canvas class="wx" width="300" height="170" data-wx-body="morning-glory"></canvas></div>
+        <div class="meta"><div><h3>Morning Glory</h3><p>The roll cloud coming in over the Gulf</p></div><button class="copy" type="button" title="Copy the two lines that put Morning Glory on a page" aria-label="Copy the embed for Morning Glory" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/coriolis@v0.8.0/dist/coriolis.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;wx&quot; width=&quot;120&quot; height=&quot;88&quot; data-wx-body=&quot;morning-glory&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="swarm">
+        <div class="demo"><span class="from">Swarm</span><canvas class="swarm" width="300" height="170" data-swarm-body="starlings"></canvas></div>
+        <div class="meta"><div><h3>Starlings</h3><p>A murmuration wheeling and folding</p></div><button class="copy" type="button" title="Copy the two lines that put Starlings on a page" aria-label="Copy the embed for Starlings" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/swarm@v0.3.0/dist/swarm.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;swarm&quot; width=&quot;120&quot; height=&quot;88&quot; data-swarm-body=&quot;starlings&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="swarm">
+        <div class="demo"><span class="from">Swarm</span><canvas class="swarm" width="300" height="170" data-swarm-body="gretna"></canvas></div>
+        <div class="meta"><div><h3>Gretna</h3><p>The roost coming in at dusk</p></div><button class="copy" type="button" title="Copy the two lines that put Gretna on a page" aria-label="Copy the embed for Gretna" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/swarm@v0.3.0/dist/swarm.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;swarm&quot; width=&quot;120&quot; height=&quot;88&quot; data-swarm-body=&quot;gretna&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="swarm">
+        <div class="demo"><span class="from">Swarm</span><canvas class="swarm" width="300" height="170" data-swarm-body="bait-ball"></canvas></div>
+        <div class="meta"><div><h3>Bait ball</h3><p>Spins, then opens when a predator passes</p></div><button class="copy" type="button" title="Copy the two lines that put Bait ball on a page" aria-label="Copy the embed for Bait ball" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/swarm@v0.3.0/dist/swarm.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;swarm&quot; width=&quot;120&quot; height=&quot;88&quot; data-swarm-body=&quot;bait-ball&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="swarm">
+        <div class="demo"><span class="from">Swarm</span><canvas class="swarm" width="300" height="170" data-swarm-body="fireflies"></canvas></div>
+        <div class="meta"><div><h3>Fireflies</h3><p>Blinking over a meadow on their own clocks</p></div><button class="copy" type="button" title="Copy the two lines that put Fireflies on a page" aria-label="Copy the embed for Fireflies" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/swarm@v0.3.0/dist/swarm.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;swarm&quot; width=&quot;120&quot; height=&quot;88&quot; data-swarm-body=&quot;fireflies&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="ignis">
+        <div class="demo"><span class="from">Ignis</span><canvas class="fire" width="300" height="170" data-fire-body="bushfire"></canvas></div>
+        <div class="meta"><div><h3>Bushfire</h3><p>A front crossing the canvas, embers on the wind</p></div><button class="copy" type="button" title="Copy the two lines that put Bushfire on a page" aria-label="Copy the embed for Bushfire" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/ignis@v0.2.0/dist/ignis.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;fire&quot; width=&quot;120&quot; height=&quot;88&quot; data-fire-body=&quot;bushfire&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="ignis">
+        <div class="demo"><span class="from">Ignis</span><canvas class="fire" width="300" height="170" data-fire-body="campfire"></canvas></div>
+        <div class="meta"><div><h3>Campfire</h3><p>Logs, flames and smoke carrying on up</p></div><button class="copy" type="button" title="Copy the two lines that put Campfire on a page" aria-label="Copy the embed for Campfire" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/ignis@v0.2.0/dist/ignis.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;fire&quot; width=&quot;120&quot; height=&quot;88&quot; data-fire-body=&quot;campfire&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="ignis">
+        <div class="demo"><span class="from">Ignis</span><canvas class="fire" width="300" height="170" data-fire-body="fireworks"></canvas></div>
+        <div class="meta"><div><h3>Fireworks</h3><p>Shells on a schedule, sparks falling</p></div><button class="copy" type="button" title="Copy the two lines that put Fireworks on a page" aria-label="Copy the embed for Fireworks" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/ignis@v0.2.0/dist/ignis.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;fire&quot; width=&quot;120&quot; height=&quot;88&quot; data-fire-body=&quot;fireworks&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="ignis">
+        <div class="demo"><span class="from">Ignis</span><canvas class="fire" width="300" height="170" data-fire-body="lava-lake"></canvas></div>
+        <div class="meta"><div><h3>Lava lake</h3><p>Lava cracking through its crust</p></div><button class="copy" type="button" title="Copy the two lines that put Lava lake on a page" aria-label="Copy the embed for Lava lake" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/ignis@v0.2.0/dist/ignis.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;fire&quot; width=&quot;120&quot; height=&quot;88&quot; data-fire-body=&quot;lava-lake&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="swell">
+        <div class="demo"><span class="from">Swell</span><canvas class="water" width="300" height="170" data-water-body="nazare"></canvas></div>
+        <div class="meta"><div><h3>Nazaré</h3><p>The big wave standing up and breaking</p></div><button class="copy" type="button" title="Copy the two lines that put Nazaré on a page" aria-label="Copy the embed for Nazaré" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/swell@v0.1.0/dist/swell.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;water&quot; width=&quot;120&quot; height=&quot;88&quot; data-water-body=&quot;nazare&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="swell">
+        <div class="demo"><span class="from">Swell</span><canvas class="water" width="300" height="170" data-water-body="waterfall"></canvas></div>
+        <div class="meta"><div><h3>Waterfall</h3><p>Tearing into mist at the bottom</p></div><button class="copy" type="button" title="Copy the two lines that put Waterfall on a page" aria-label="Copy the embed for Waterfall" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/swell@v0.1.0/dist/swell.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;water&quot; width=&quot;120&quot; height=&quot;88&quot; data-water-body=&quot;waterfall&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="swell">
+        <div class="demo"><span class="from">Swell</span><canvas class="water" width="300" height="170" data-water-body="whirlpool"></canvas></div>
+        <div class="meta"><div><h3>Whirlpool</h3><p>Spiralling down to a dark eye</p></div><button class="copy" type="button" title="Copy the two lines that put Whirlpool on a page" aria-label="Copy the embed for Whirlpool" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/swell@v0.1.0/dist/swell.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;water&quot; width=&quot;120&quot; height=&quot;88&quot; data-water-body=&quot;whirlpool&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="swell">
+        <div class="demo"><span class="from">Swell</span><canvas class="water" width="300" height="170" data-water-body="fountain"></canvas></div>
+        <div class="meta"><div><h3>Fountain</h3><p>Jets that dance to their own clock</p></div><button class="copy" type="button" title="Copy the two lines that put Fountain on a page" aria-label="Copy the embed for Fountain" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/swell@v0.1.0/dist/swell.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;water&quot; width=&quot;120&quot; height=&quot;88&quot; data-water-body=&quot;fountain&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="escapement">
+        <div class="demo"><span class="from">Escapement</span><canvas class="gear" width="300" height="170" data-gear-body="clockwork"></canvas></div>
+        <div class="meta"><div><h3>Clockwork</h3><p>Gears meshing at the ratio of their teeth</p></div><button class="copy" type="button" title="Copy the two lines that put Clockwork on a page" aria-label="Copy the embed for Clockwork" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/escapement@v0.1.0/dist/escapement.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;gear&quot; width=&quot;120&quot; height=&quot;88&quot; data-gear-body=&quot;clockwork&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="escapement">
+        <div class="demo"><span class="from">Escapement</span><canvas class="gear" width="300" height="170" data-gear-body="anchor"></canvas></div>
+        <div class="meta"><div><h3>Anchor</h3><p>An escapement letting one tooth slip per swing</p></div><button class="copy" type="button" title="Copy the two lines that put Anchor on a page" aria-label="Copy the embed for Anchor" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/escapement@v0.1.0/dist/escapement.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;gear&quot; width=&quot;120&quot; height=&quot;88&quot; data-gear-body=&quot;anchor&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="escapement">
+        <div class="demo"><span class="from">Escapement</span><canvas class="gear" width="300" height="170" data-gear-body="lissajous"></canvas></div>
+        <div class="meta"><div><h3>Lissajous</h3><p>A harmonograph drawing its figure</p></div><button class="copy" type="button" title="Copy the two lines that put Lissajous on a page" aria-label="Copy the embed for Lissajous" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/escapement@v0.1.0/dist/escapement.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;gear&quot; width=&quot;120&quot; height=&quot;88&quot; data-gear-body=&quot;lissajous&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="escapement">
+        <div class="demo"><span class="from">Escapement</span><canvas class="gear" width="300" height="170" data-gear-body="radar"></canvas></div>
+        <div class="meta"><div><h3>Radar</h3><p>A sweep going round, blips fading</p></div><button class="copy" type="button" title="Copy the two lines that put Radar on a page" aria-label="Copy the embed for Radar" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/escapement@v0.1.0/dist/escapement.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;gear&quot; width=&quot;120&quot; height=&quot;88&quot; data-gear-body=&quot;radar&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="dendrite">
+        <div class="demo"><span class="from">Dendrite</span><canvas class="micro" width="300" height="170" data-micro-body="cortex"></canvas></div>
+        <div class="meta"><div><h3>Cortex</h3><p>Neurons wired in a ring, firing</p></div><button class="copy" type="button" title="Copy the two lines that put Cortex on a page" aria-label="Copy the embed for Cortex" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/dendrite@v0.1.0/dist/dendrite.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;micro&quot; width=&quot;120&quot; height=&quot;88&quot; data-micro-body=&quot;cortex&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="dendrite">
+        <div class="demo"><span class="from">Dendrite</span><canvas class="micro" width="300" height="170" data-micro-body="snowflake"></canvas></div>
+        <div class="meta"><div><h3>Snowflake</h3><p>Throwing branches as it grows</p></div><button class="copy" type="button" title="Copy the two lines that put Snowflake on a page" aria-label="Copy the embed for Snowflake" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/dendrite@v0.1.0/dist/dendrite.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;micro&quot; width=&quot;120&quot; height=&quot;88&quot; data-micro-body=&quot;snowflake&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="dendrite">
+        <div class="demo"><span class="from">Dendrite</span><canvas class="micro" width="300" height="170" data-micro-body="mitosis"></canvas></div>
+        <div class="meta"><div><h3>Mitosis</h3><p>A cell pinching itself in two</p></div><button class="copy" type="button" title="Copy the two lines that put Mitosis on a page" aria-label="Copy the embed for Mitosis" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/dendrite@v0.1.0/dist/dendrite.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;micro&quot; width=&quot;120&quot; height=&quot;88&quot; data-micro-body=&quot;mitosis&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="dendrite">
+        <div class="demo"><span class="from">Dendrite</span><canvas class="micro" width="300" height="170" data-micro-body="dna"></canvas></div>
+        <div class="meta"><div><h3>DNA</h3><p>A strand winding past</p></div><button class="copy" type="button" title="Copy the two lines that put DNA on a page" aria-label="Copy the embed for DNA" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/dendrite@v0.1.0/dist/dendrite.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;micro&quot; width=&quot;120&quot; height=&quot;88&quot; data-micro-body=&quot;dna&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="chladni">
+        <div class="demo"><span class="from">Chladni</span><canvas class="sound" width="300" height="170" data-sound-body="ripple-tank"></canvas></div>
+        <div class="meta"><div><h3>Ripple tank</h3><p>Rings crossing and interfering</p></div><button class="copy" type="button" title="Copy the two lines that put Ripple tank on a page" aria-label="Copy the embed for Ripple tank" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/chladni@v0.1.0/dist/chladni.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;sound&quot; width=&quot;120&quot; height=&quot;88&quot; data-sound-body=&quot;ripple-tank&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="chladni">
+        <div class="demo"><span class="from">Chladni</span><canvas class="sound" width="300" height="170" data-sound-body="chladni-plate"></canvas></div>
+        <div class="meta"><div><h3>Chladni plate</h3><p>Sand settling on the still lines of a ringing plate</p></div><button class="copy" type="button" title="Copy the two lines that put Chladni plate on a page" aria-label="Copy the embed for Chladni plate" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/chladni@v0.1.0/dist/chladni.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;sound&quot; width=&quot;120&quot; height=&quot;88&quot; data-sound-body=&quot;chladni-plate&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="chladni">
+        <div class="demo"><span class="from">Chladni</span><canvas class="sound" width="300" height="170" data-sound-body="cymatics"></canvas></div>
+        <div class="meta"><div><h3>Cymatics</h3><p>Water on a speaker locking into a lattice</p></div><button class="copy" type="button" title="Copy the two lines that put Cymatics on a page" aria-label="Copy the embed for Cymatics" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/chladni@v0.1.0/dist/chladni.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;sound&quot; width=&quot;120&quot; height=&quot;88&quot; data-sound-body=&quot;cymatics&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="chladni">
+        <div class="demo"><span class="from">Chladni</span><canvas class="sound" width="300" height="170" data-sound-body="speaker"></canvas></div>
+        <div class="meta"><div><h3>Speaker</h3><p>A cone pumping the air in front of it</p></div><button class="copy" type="button" title="Copy the two lines that put Speaker on a page" aria-label="Copy the embed for Speaker" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/chladni@v0.1.0/dist/chladni.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;sound&quot; width=&quot;120&quot; height=&quot;88&quot; data-sound-body=&quot;speaker&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="tendril">
+        <div class="demo"><span class="from">Tendril</span><canvas class="plant" width="300" height="170" data-plant-body="wheat"></canvas></div>
+        <div class="meta"><div><h3>Wheat</h3><p>A field rippling as the gust runs through</p></div><button class="copy" type="button" title="Copy the two lines that put Wheat on a page" aria-label="Copy the embed for Wheat" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/tendril@v0.1.0/dist/tendril.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;plant&quot; width=&quot;120&quot; height=&quot;88&quot; data-plant-body=&quot;wheat&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="tendril">
+        <div class="demo"><span class="from">Tendril</span><canvas class="plant" width="300" height="170" data-plant-body="sunflower"></canvas></div>
+        <div class="meta"><div><h3>Sunflower</h3><p>Turning with the day</p></div><button class="copy" type="button" title="Copy the two lines that put Sunflower on a page" aria-label="Copy the embed for Sunflower" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/tendril@v0.1.0/dist/tendril.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;plant&quot; width=&quot;120&quot; height=&quot;88&quot; data-plant-body=&quot;sunflower&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="tendril">
+        <div class="demo"><span class="from">Tendril</span><canvas class="plant" width="300" height="170" data-plant-body="oak"></canvas></div>
+        <div class="meta"><div><h3>Oak</h3><p>Bending in the wind, leaves going</p></div><button class="copy" type="button" title="Copy the two lines that put Oak on a page" aria-label="Copy the embed for Oak" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/tendril@v0.1.0/dist/tendril.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;plant&quot; width=&quot;120&quot; height=&quot;88&quot; data-plant-body=&quot;oak&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="tendril">
+        <div class="demo"><span class="from">Tendril</span><canvas class="plant" width="300" height="170" data-plant-body="kelp-forest"></canvas></div>
+        <div class="meta"><div><h3>Kelp forest</h3><p>Swaying in the swell</p></div><button class="copy" type="button" title="Copy the two lines that put Kelp forest on a page" aria-label="Copy the embed for Kelp forest" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/tendril@v0.1.0/dist/tendril.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;plant&quot; width=&quot;120&quot; height=&quot;88&quot; data-plant-body=&quot;kelp-forest&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="lumen">
+        <div class="demo"><span class="from">Lumen</span><canvas class="light" width="300" height="170" data-light-body="lighthouse"></canvas></div>
+        <div class="meta"><div><h3>Lighthouse</h3><p>A beam sweeping the mist</p></div><button class="copy" type="button" title="Copy the two lines that put Lighthouse on a page" aria-label="Copy the embed for Lighthouse" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/lumen@v0.1.0/dist/lumen.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;light&quot; width=&quot;120&quot; height=&quot;88&quot; data-light-body=&quot;lighthouse&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="lumen">
+        <div class="demo"><span class="from">Lumen</span><canvas class="light" width="300" height="170" data-light-body="pool"></canvas></div>
+        <div class="meta"><div><h3>Pool</h3><p>Sunlight webbing the floor</p></div><button class="copy" type="button" title="Copy the two lines that put Pool on a page" aria-label="Copy the embed for Pool" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/lumen@v0.1.0/dist/lumen.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;light&quot; width=&quot;120&quot; height=&quot;88&quot; data-light-body=&quot;pool&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="lumen">
+        <div class="demo"><span class="from">Lumen</span><canvas class="light" width="300" height="170" data-light-body="mirror-ball"></canvas></div>
+        <div class="meta"><div><h3>Mirror ball</h3><p>Spots wheeling round the room</p></div><button class="copy" type="button" title="Copy the two lines that put Mirror ball on a page" aria-label="Copy the embed for Mirror ball" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/lumen@v0.1.0/dist/lumen.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;light&quot; width=&quot;120&quot; height=&quot;88&quot; data-light-body=&quot;mirror-ball&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+      <article class="thing" data-lib="lumen">
+        <div class="demo"><span class="from">Lumen</span><canvas class="light" width="300" height="170" data-light-body="rainbow"></canvas></div>
+        <div class="meta"><div><h3>Rainbow</h3><p>Over a shower, rain still falling through</p></div><button class="copy" type="button" title="Copy the two lines that put Rainbow on a page" aria-label="Copy the embed for Rainbow" data-snippet="&lt;script src=&quot;https://cdn.jsdelivr.net/gh/TonkaTuff/lumen@v0.1.0/dist/lumen.min.js&quot;&gt;&lt;/script&gt;
+&lt;canvas class=&quot;light&quot; width=&quot;120&quot; height=&quot;88&quot; data-light-body=&quot;rainbow&quot;&gt;&lt;/canvas&gt;"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg></button></div>
+      </article>
+    </div>
+    <p class="more">Four from each library. All two hundred and fifty-one are on the <a href="export/">export page</a>, as a PNG, GIF or WebM at any size. Want one that isn't here? <a href="https://github.com/TonkaTuff/ephemeris/issues">Open an issue</a> with a photo of the thing.</p>
+  </div>
+</section>
+
 <section id="libraries">
   <div class="wrap">
-    <h2>Libraries</h2>
-    <p class="sub">Each one is a single script. Nothing to install and nothing to sign up for.</p>
-    <div class="grid">
-      <div class="card">
-        <div class="preview">
-          <canvas class="orb" width="150" height="88" data-orb-body="gargantua"></canvas>
-          <canvas class="orb" width="88" height="88" data-orb-body="andromeda"></canvas>
-          <canvas class="orb" width="88" height="88" data-orb-body="orion"></canvas>
-          <canvas class="orb" width="88" height="88" data-orb-body="saturn"></canvas>
-        </div>
-        <h3>Ephemeris <span class="ver mono">0.12.1</span></h3>
-        <p>Celestial stipple: things in the sky drawn as dots on one canvas. Twelve kinds of body and fifty
-          named ones, from the Milky Way and Andromeda to Saturn, the Sun, the Moon, Halley, the Perseids and the ISS going over. A playground
-          writes the tag for you. Loading states
-          for AI interfaces that don't look like everyone else's. Six CSS variables, or monochrome.</p>
-        <div class="tags"><span class="tag">canvas 2d</span><span class="tag">no deps</span><span class="tag">50 named bodies</span><span class="tag">MIT</span></div>
-        <div class="row">
-          <a class="btn small" href="https://tonkatuff.github.io/ephemeris/">Playground</a>
-          <a class="btn small" href="https://github.com/TonkaTuff/ephemeris">GitHub</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="preview">
-          <canvas class="wx" width="150" height="88" data-wx-body="yasi"></canvas>
-          <canvas class="wx" width="88" height="88" data-wx-body="fork-lightning"></canvas>
-          <canvas class="wx" width="88" height="88" data-wx-body="el-reno"></canvas>
-          <canvas class="wx" width="120" height="88" data-wx-body="morning-glory"></canvas>
-        </div>
-        <h3>Coriolis <span class="ver mono">0.8.0</span></h3>
-        <p>Weather events, drawn as dots. Cyclones as the satellite sees them, spinning the right way for
-          their hemisphere. Six kinds of cloud from the side, thunderstorms at night, a bushfire's own
-          storm, lightning on its own, tornadoes from rope to wedge, the aurora, rain and snow, dust storms,
-          wind, halos round the sun and fog. Sixty-five named events, from Tracy to Black Summer. Sister to
-          Ephemeris, and the dots match, so they sit together on a page.</p>
-        <div class="tags"><span class="tag">canvas 2d</span><span class="tag">no deps</span><span class="tag">65 named events</span><span class="tag">MIT</span></div>
-        <div class="row">
-          <a class="btn small" href="https://tonkatuff.github.io/coriolis/">Playground</a>
-          <a class="btn small" href="https://github.com/TonkaTuff/coriolis">GitHub</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="preview">
-          <canvas class="swarm" width="150" height="88" data-swarm-body="starlings"></canvas>
-          <canvas class="swarm" width="88" height="88" data-swarm-body="gretna"></canvas>
-          <canvas class="swarm" width="88" height="88" data-swarm-body="bait-ball"></canvas>
-          <canvas class="swarm" width="120" height="88" data-swarm-body="fireflies"></canvas>
-        </div>
-        <h3>Swarm <span class="ver mono">0.3.0</span></h3>
-        <p>Living things, drawn as dots. A murmuration of starlings that wheels and folds, a bait ball
-          that spins and opens when a predator passes, fireflies blinking over a meadow on their own
-          clocks or one shared one, bees round a hanging swarm, jellyfish drifting up, a bay that lights behind
-          a paddle, an ant trail, a crowd crossing. Twenty-three named swarms, every creature a function of
-          time. Same dots as its sisters, so they all sit together on a page.</p>
-        <div class="tags"><span class="tag">canvas 2d</span><span class="tag">no deps</span><span class="tag">23 named swarms</span><span class="tag">MIT</span></div>
-        <div class="row">
-          <a class="btn small" href="https://tonkatuff.github.io/swarm/">Playground</a>
-          <a class="btn small" href="https://github.com/TonkaTuff/swarm">GitHub</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="preview">
-          <canvas class="fire" width="150" height="88" data-fire-body="bushfire"></canvas>
-          <canvas class="fire" width="88" height="88" data-fire-body="campfire"></canvas>
-          <canvas class="fire" width="88" height="88" data-fire-body="fireworks"></canvas>
-          <canvas class="fire" width="120" height="88" data-fire-body="lava-lake"></canvas>
-        </div>
-        <h3>Ignis <span class="ver mono">0.2.0</span></h3>
-        <p>Fire, drawn as dots. Flames that rise, cool and fade, embers that ride the wind, smoke that
-          carries on up after the light has gone. A campfire with its logs, a candle, a match, a forge,
-          bushfire fronts right across the canvas from a grassfire to Black Saturday, fireworks on a
-          schedule, and lava cracking through its crust. Twenty-one named fires. Same dots as the
-          others, so they all sit together on a page.</p>
-        <div class="tags"><span class="tag">canvas 2d</span><span class="tag">no deps</span><span class="tag">21 named fires</span><span class="tag">MIT</span></div>
-        <div class="row">
-          <a class="btn small" href="https://tonkatuff.github.io/ignis/">Playground</a>
-          <a class="btn small" href="https://github.com/TonkaTuff/ignis">GitHub</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="preview">
-          <canvas class="water" width="150" height="88" data-water-body="nazare"></canvas>
-          <canvas class="water" width="88" height="88" data-water-body="waterfall"></canvas>
-          <canvas class="water" width="88" height="88" data-water-body="whirlpool"></canvas>
-          <canvas class="water" width="120" height="88" data-water-body="fountain"></canvas>
-        </div>
-        <h3>Swell <span class="ver mono">0.1.0</span></h3>
-        <p>Water, drawn as dots. Surf rolling in and breaking on the sand, from Bells Beach to Nazar&eacute;,
-          waterfalls tearing into mist, geysers on their own clocks and fountains that dance, whirlpools
-          spiralling to a dark eye, rain on a pond. Twenty named waters, every dot a fixed place on the water
-          and the water a function of time. Same dots as the others, so they all sit together on a page.</p>
-        <div class="tags"><span class="tag">canvas 2d</span><span class="tag">no deps</span><span class="tag">20 named waters</span><span class="tag">MIT</span></div>
-        <div class="row">
-          <a class="btn small" href="https://tonkatuff.github.io/swell/">Playground</a>
-          <a class="btn small" href="https://github.com/TonkaTuff/swell">GitHub</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="preview">
-          <canvas class="gear" width="150" height="88" data-gear-body="clockwork"></canvas>
-          <canvas class="gear" width="88" height="88" data-gear-body="anchor"></canvas>
-          <canvas class="gear" width="88" height="88" data-gear-body="lissajous"></canvas>
-          <canvas class="gear" width="120" height="88" data-gear-body="radar"></canvas>
-        </div>
-        <h3>Escapement <span class="ver mono">0.1.0</span></h3>
-        <p>Machines, drawn as dots. Gears meshing at the ratio of their teeth, an anchor escapement letting the
-          wheel slip a tooth every half swing, pendulums in a wave and in a cradle, a harmonograph drawing,
-          a radar going round. Loaders that look like something. Seventeen named machines, every angle a
-          function of time, so the tick lands at the same moment every time. Same dots as the others.</p>
-        <div class="tags"><span class="tag">canvas 2d</span><span class="tag">no deps</span><span class="tag">17 named machines</span><span class="tag">MIT</span></div>
-        <div class="row">
-          <a class="btn small" href="https://tonkatuff.github.io/escapement/">Playground</a>
-          <a class="btn small" href="https://github.com/TonkaTuff/escapement">GitHub</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="preview">
-          <canvas class="micro" width="150" height="88" data-micro-body="cortex"></canvas>
-          <canvas class="micro" width="88" height="88" data-micro-body="snowflake"></canvas>
-          <canvas class="micro" width="88" height="88" data-micro-body="mitosis"></canvas>
-          <canvas class="micro" width="120" height="88" data-micro-body="dna"></canvas>
-        </div>
-        <h3>Dendrite <span class="ver mono">0.1.0</span></h3>
-        <p>The very small, drawn as dots. Neurons firing down their axons and a cortex wired in a ring, a cell pinching itself in two, a snowflake throwing branches as it grows, frost creeping up a window, grains knocked about by molecules, a strand of DNA winding past. Twelve named things. Same dots as the others, so they all sit together on a page.</p>
-        <div class="tags"><span class="tag">canvas 2d</span><span class="tag">no deps</span><span class="tag">12 named things</span><span class="tag">MIT</span></div>
-        <div class="row">
-          <a class="btn small" href="https://tonkatuff.github.io/dendrite/">Playground</a>
-          <a class="btn small" href="https://github.com/TonkaTuff/dendrite">GitHub</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="preview">
-          <canvas class="sound" width="150" height="88" data-sound-body="ripple-tank"></canvas>
-          <canvas class="sound" width="88" height="88" data-sound-body="chladni-plate"></canvas>
-          <canvas class="sound" width="88" height="88" data-sound-body="cymatics"></canvas>
-          <canvas class="sound" width="120" height="88" data-sound-body="speaker"></canvas>
-        </div>
-        <h3>Chladni <span class="ver mono">0.1.0</span></h3>
-        <p>Sound, drawn as dots. Sand finding the still lines of a ringing Chladni plate and settling on a new figure every few seconds, rings crossing in a ripple tank, a double slit, a string running up its harmonics or plucked and ringing down, a speaker cone pumping the air in front of it, water on a speaker locking into a lattice. Fourteen named sounds.</p>
-        <div class="tags"><span class="tag">canvas 2d</span><span class="tag">no deps</span><span class="tag">14 named sounds</span><span class="tag">MIT</span></div>
-        <div class="row">
-          <a class="btn small" href="https://tonkatuff.github.io/chladni/">Playground</a>
-          <a class="btn small" href="https://github.com/TonkaTuff/chladni">GitHub</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="preview">
-          <canvas class="plant" width="150" height="88" data-plant-body="wheat"></canvas>
-          <canvas class="plant" width="88" height="88" data-plant-body="sunflower"></canvas>
-          <canvas class="plant" width="88" height="88" data-plant-body="oak"></canvas>
-          <canvas class="plant" width="120" height="88" data-plant-body="kelp-forest"></canvas>
-        </div>
-        <h3>Tendril <span class="ver mono">0.1.0</span></h3>
-        <p>Plants, drawn as dots. A dandelion clock going off downwind, a fern unrolling from the tip, a sunflower turning with the day, trees bending in a gust that runs through the wood, wheat rippling, a kelp forest swaying in the swell. Fifteen named plants, all leaning on one gust field, so they move together on a page.</p>
-        <div class="tags"><span class="tag">canvas 2d</span><span class="tag">no deps</span><span class="tag">15 named plants</span><span class="tag">MIT</span></div>
-        <div class="row">
-          <a class="btn small" href="https://tonkatuff.github.io/tendril/">Playground</a>
-          <a class="btn small" href="https://github.com/TonkaTuff/tendril">GitHub</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="preview">
-          <canvas class="light" width="150" height="88" data-light-body="lighthouse"></canvas>
-          <canvas class="light" width="88" height="88" data-light-body="pool"></canvas>
-          <canvas class="light" width="88" height="88" data-light-body="mirror-ball"></canvas>
-          <canvas class="light" width="120" height="88" data-light-body="rainbow"></canvas>
-        </div>
-        <h3>Lumen <span class="ver mono">0.1.0</span></h3>
-        <p>Light, drawn as dots. Sunlight focused into a moving web on a pool floor, a rainbow over a shower with the rain still falling through it, a lighthouse beam sweeping the mist, searchlights, a mirror ball wheeling its spots round the room, a prism fanning white light into seven colours. Fourteen named lights.</p>
-        <div class="tags"><span class="tag">canvas 2d</span><span class="tag">no deps</span><span class="tag">14 named lights</span><span class="tag">MIT</span></div>
-        <div class="row">
-          <a class="btn small" href="https://tonkatuff.github.io/lumen/">Playground</a>
-          <a class="btn small" href="https://github.com/TonkaTuff/lumen">GitHub</a>
-        </div>
-      </div>
+    <h2>Ten libraries</h2>
+    <p class="sub">Each one is a single script with the same shape: a class on the canvas and data attributes for every option. The dots match, so they all sit together on a page.</p>
+    <div class="libs">
+      <div class="lib"><h3>Ephemeris <span class="ver mono">0.12.1</span></h3><p>Things in the sky.</p><span class="tag">50 named bodies</span><div class="row"><a href="https://tonkatuff.github.io/ephemeris/">Playground</a><a href="https://github.com/TonkaTuff/ephemeris">GitHub</a></div></div>
+      <div class="lib"><h3>Coriolis <span class="ver mono">0.8.0</span></h3><p>Weather, as the satellite sees it.</p><span class="tag">65 named events</span><div class="row"><a href="https://tonkatuff.github.io/coriolis/">Playground</a><a href="https://github.com/TonkaTuff/coriolis">GitHub</a></div></div>
+      <div class="lib"><h3>Swarm <span class="ver mono">0.3.0</span></h3><p>Living things, every one a function of time.</p><span class="tag">23 named swarms</span><div class="row"><a href="https://tonkatuff.github.io/swarm/">Playground</a><a href="https://github.com/TonkaTuff/swarm">GitHub</a></div></div>
+      <div class="lib"><h3>Ignis <span class="ver mono">0.2.0</span></h3><p>Fire: flames, embers, smoke.</p><span class="tag">21 named fires</span><div class="row"><a href="https://tonkatuff.github.io/ignis/">Playground</a><a href="https://github.com/TonkaTuff/ignis">GitHub</a></div></div>
+      <div class="lib"><h3>Swell <span class="ver mono">0.1.0</span></h3><p>Water: every dot a fixed place on it.</p><span class="tag">20 named waters</span><div class="row"><a href="https://tonkatuff.github.io/swell/">Playground</a><a href="https://github.com/TonkaTuff/swell">GitHub</a></div></div>
+      <div class="lib"><h3>Escapement <span class="ver mono">0.1.0</span></h3><p>Machines: the tick lands on time.</p><span class="tag">17 named machines</span><div class="row"><a href="https://tonkatuff.github.io/escapement/">Playground</a><a href="https://github.com/TonkaTuff/escapement">GitHub</a></div></div>
+      <div class="lib"><h3>Dendrite <span class="ver mono">0.1.0</span></h3><p>The very small.</p><span class="tag">12 named things</span><div class="row"><a href="https://tonkatuff.github.io/dendrite/">Playground</a><a href="https://github.com/TonkaTuff/dendrite">GitHub</a></div></div>
+      <div class="lib"><h3>Chladni <span class="ver mono">0.1.0</span></h3><p>Sound, made visible.</p><span class="tag">14 named sounds</span><div class="row"><a href="https://tonkatuff.github.io/chladni/">Playground</a><a href="https://github.com/TonkaTuff/chladni">GitHub</a></div></div>
+      <div class="lib"><h3>Tendril <span class="ver mono">0.1.0</span></h3><p>Plants, leaning on one gust field.</p><span class="tag">15 named plants</span><div class="row"><a href="https://tonkatuff.github.io/tendril/">Playground</a><a href="https://github.com/TonkaTuff/tendril">GitHub</a></div></div>
+      <div class="lib"><h3>Lumen <span class="ver mono">0.1.0</span></h3><p>Light: caustics, beams, rainbows.</p><span class="tag">14 named lights</span><div class="row"><a href="https://tonkatuff.github.io/lumen/">Playground</a><a href="https://github.com/TonkaTuff/lumen">GitHub</a></div></div>
     </div>
-    <p class="more">More on the way. All ten libraries take requests: <a href="https://github.com/TonkaTuff/ephemeris/issues">open an issue</a> with a photo of the thing. Other libraries land here when they're ready to use, not before.</p>
   </div>
 </section>
 
 <section id="how">
   <div class="wrap">
     <h2>How to use</h2>
-    <p class="sub">Paste two lines. Your coding agent can do it from the README if you'd rather not. The other nine work the same way, each with its own class and matching attributes: <code>wx</code> for Coriolis, <code>swarm</code>, <code>fire</code> for Ignis, <code>water</code> for Swell, <code>gear</code> for Escapement, <code>micro</code> for Dendrite, <code>sound</code> for Chladni, <code>plant</code> for Tendril and <code>light</code> for Lumen.</p>
+    <p class="sub">Paste two lines. The copy button on any card above gives you both. Your coding agent can do it from the README if you'd rather not.</p>
     <div class="steps">
       <div class="step"><div class="n">1</div><h3>Add the script</h3><p>From the repo or a CDN. One file, nothing to install.</p>
 <pre><code>&lt;script src="https://cdn.jsdelivr.net/gh/TonkaTuff/ephemeris@v0.12.1/dist/ephemeris.min.js"&gt;&lt;/script&gt;</code></pre></div>
@@ -381,5 +462,27 @@ footer a:hover{color:var(--ink)}
 <script src="https://cdn.jsdelivr.net/gh/TonkaTuff/chladni@v0.1.0/dist/chladni.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/TonkaTuff/tendril@v0.1.0/dist/tendril.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/TonkaTuff/lumen@v0.1.0/dist/lumen.min.js"></script>
+<script>
+(() => {
+  // Filter chips: one library at a time, or all. The count line says how many are showing.
+  const chips = [...document.querySelectorAll('.chip')], things = [...document.querySelectorAll('.thing')], count = document.querySelector('.count');
+  for (const c of chips) c.addEventListener('click', () => {
+    const f = c.dataset.filter;
+    for (const o of chips) o.setAttribute('aria-pressed', String(o === c));
+    let n = 0; for (const t of things) { const show = !f || t.dataset.lib === f; t.hidden = !show; n += show; }
+    count.textContent = f ? `${n} of ${c.textContent}` : '40 of 251';
+  });
+  // Copy: the script tag and the canvas, two lines, then a tick for a moment.
+  for (const b of document.querySelectorAll('.copy')) b.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(b.dataset.snippet); }
+    catch (e) {   // no async clipboard (older browser, or a sandboxed frame): the old way still works
+      const ta = document.createElement('textarea'); ta.value = b.dataset.snippet; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select(); let ok = false; try { ok = document.execCommand('copy'); } catch (e2) {} ta.remove(); if (!ok) return;
+    }
+    b.classList.add('done'); b.innerHTML = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>';
+    setTimeout(() => { b.classList.remove('done'); b.innerHTML = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5v-2a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2"/></svg>'; }, 1400);
+  });
+})();
+</script>
 </body>
 </html>
